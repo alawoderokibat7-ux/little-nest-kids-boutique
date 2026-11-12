@@ -16,6 +16,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [justAdded, setJustAdded] = useState(false);
   const [isInstantBookingOpen, setIsInstantBookingOpen] = useState(false);
   const [isImgLoaded, setIsImgLoaded] = useState(false);
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -47,9 +48,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-pulse" />
           )}
           <img
-            src={product.images[0]}
+            src={product.images[currentImgIndex] || product.images[0]}
             alt={product.name}
             onLoad={() => setIsImgLoaded(true)}
+            onError={() => {
+              if (currentImgIndex + 1 < product.images.length) {
+                setCurrentImgIndex((prev) => prev + 1);
+              } else {
+                setIsImgLoaded(true);
+              }
+            }}
             className={`w-full h-full object-cover object-center group-hover:scale-108 group-hover:brightness-[1.03] transition-all duration-700 ease-out ${
               isImgLoaded ? 'opacity-100' : 'opacity-0'
             }`}
