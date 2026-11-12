@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider, useCart } from './context/CartContext';
+import { AtmosphereProvider, AtmosphereBackground } from './components/common/AtmosphereBackground';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
@@ -33,13 +34,8 @@ const GlobalToast: React.FC = () => {
 export const AppContent: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-boutique-charcoal font-sans selection:bg-accent/20 selection:text-accent relative">
-      {/* Ambient Glassmorphic Glowing Orbs in Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-pink-200/55 rounded-full blur-[140px] animate-pulse [animation-duration:8s]" />
-        <div className="absolute top-1/4 -right-40 w-[550px] h-[550px] bg-purple-200/45 rounded-full blur-[140px] animate-pulse [animation-duration:10s]" />
-        <div className="absolute top-2/3 -left-20 w-[500px] h-[500px] bg-amber-100/60 rounded-full blur-[130px] animate-pulse [animation-duration:9s]" />
-        <div className="absolute -bottom-32 right-1/4 w-[600px] h-[600px] bg-blue-100/55 rounded-full blur-[140px] animate-pulse [animation-duration:11s]" />
-      </div>
+      {/* Dynamic 3D / Canvas Animated Atmosphere Background */}
+      <AtmosphereBackground />
 
       {/* Navigation */}
       <Navbar />
@@ -83,9 +79,11 @@ export const AppContent: React.FC = () => {
 export default function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <AppContent />
-      </CartProvider>
+      <AtmosphereProvider>
+        <CartProvider>
+          <AppContent />
+        </CartProvider>
+      </AtmosphereProvider>
     </BrowserRouter>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Search, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { AtmosphereSwitcher } from './AtmosphereBackground';
 
 export const Navbar: React.FC = () => {
   const { itemCount, setIsCartOpen, setIsSearchOpen } = useCart();
@@ -106,6 +107,9 @@ export const Navbar: React.FC = () => {
               <Search className="w-4 h-4 text-boutique-taupe absolute left-3 pointer-events-none" />
             </form>
 
+            {/* Atmosphere Background Switcher */}
+            <AtmosphereSwitcher />
+
             <Link
               to="/admin-demo"
               className="text-xs font-semibold text-boutique-charcoal hover:bg-boutique-sand/60 px-3 py-2 rounded-xl border border-boutique-border hidden md:flex items-center gap-1.5 transition"
@@ -153,7 +157,11 @@ export const Navbar: React.FC = () => {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2 border-t border-boutique-border">
+            <div className="pt-2 border-t border-boutique-border flex items-center justify-between px-3 py-2">
+              <span className="text-xs font-semibold text-boutique-charcoal">Background Mood:</span>
+              <AtmosphereSwitcher />
+            </div>
+            <div className="pt-1">
               <Link
                 to="/admin-demo"
                 onClick={() => setMobileMenuOpen(false)}
