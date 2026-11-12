@@ -71,14 +71,28 @@ export const HomePage: React.FC = () => {
 
               </div>
 
-              {/* Right Column: Enlarged Main Feature Photo (Clean, Product-focused) */}
-              <div className="lg:col-span-5">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
+              {/* Right Column: Hero Fashion Visual with Ambient Floating Animation */}
+              <div className="lg:col-span-5 relative">
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-xl group image-shine-wrapper animate-float-slow">
                   <img
                     src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?q=80&w=1000&auto=format&fit=crop"
                     alt="Blossom Petal Tulle Party Dress"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-1000 ease-out"
                   />
+
+                  {/* Ambient Floating Micro-Badge */}
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-xl border border-white/60 shadow-lg flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-accent tracking-wider block">Occasion Pick</span>
+                      <span className="text-xs font-bold text-gray-900">Blossom Petal Party Gown</span>
+                    </div>
+                    <Link
+                      to="/product/ln-001"
+                      className="px-3 py-1.5 rounded-lg bg-gray-900 text-white text-[11px] font-semibold hover:bg-accent transition"
+                    >
+                      View Piece
+                    </Link>
+                  </div>
                 </div>
               </div>
 

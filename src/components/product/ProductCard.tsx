@@ -15,6 +15,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState<string>(product.availableSizes[0] || '');
   const [justAdded, setJustAdded] = useState(false);
   const [isInstantBookingOpen, setIsInstantBookingOpen] = useState(false);
+  const [isImgLoaded, setIsImgLoaded] = useState(false);
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -36,15 +37,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Outer Card: rounded-2xl, p-2.5 on mobile, p-3 on desktop */}
       <div className="group bg-white rounded-2xl p-2.5 sm:p-3 border border-gray-200/80 hover:border-gray-300 transition-all flex flex-col justify-between">
         
-        {/* Product Visual */}
+        {/* Product Visual with Shimmer & Scale Animations */}
         <Link 
           to={`/product/${product.id}`} 
-          className="relative block w-full aspect-[4/5] rounded bg-gray-100 overflow-hidden"
+          className="relative block w-full aspect-[4/5] rounded bg-gray-100 overflow-hidden image-shine-wrapper shadow-2xs group-hover:shadow-md transition-shadow duration-500"
         >
+          {/* Skeleton Shimmer */}
+          {!isImgLoaded && (
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-pulse" />
+          )}
           <img
             src={product.images[0]}
             alt={product.name}
-            className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300"
+            onLoad={() => setIsImgLoaded(true)}
+            className={`w-full h-full object-cover object-center group-hover:scale-108 group-hover:brightness-[1.03] transition-all duration-700 ease-out ${
+              isImgLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             loading="lazy"
           />
         </Link>

@@ -88,14 +88,18 @@ export const ProductDetailPage: React.FC = () => {
       <div className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
-          {/* Left Column: Enlarged Main Product Gallery */}
+          {/* Left Column: Enlarged Main Product Gallery with Interactive Zoom */}
           <div className="lg:col-span-6 space-y-4">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
+            <div className="group aspect-[4/5] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 relative image-shine-wrapper shadow-xs hover:shadow-lg transition-shadow duration-500 cursor-zoom-in">
               <img
+                key={activeImageIndex}
                 src={product.images[activeImageIndex] || product.images[0]}
                 alt={product.name}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-center group-hover:scale-108 transition-all duration-700 ease-out animate-fade-scale"
               />
+              <span className="absolute bottom-3 right-3 text-[10px] font-semibold bg-white/80 backdrop-blur-xs px-2.5 py-1 rounded-full text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">
+                Zoom details
+              </span>
             </div>
 
             {product.images.length > 1 && (
@@ -104,9 +108,9 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`w-20 h-24 rounded-lg overflow-hidden border transition-all ${
+                    className={`w-20 h-24 rounded-lg overflow-hidden border transition-all duration-300 transform hover:scale-105 ${
                       activeImageIndex === idx
-                        ? 'border-accent ring-1 ring-accent'
+                        ? 'border-accent ring-2 ring-accent/30 shadow-md scale-102'
                         : 'border-gray-200 opacity-70 hover:opacity-100'
                     }`}
                   >
