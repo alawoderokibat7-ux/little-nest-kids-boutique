@@ -84,21 +84,21 @@ export const ProductDetailPage: React.FC = () => {
         <span className="text-gray-900 font-medium truncate max-w-[200px]">{product.name}</span>
       </nav>
 
-      {/* Main Product Box: rounded-3xl (24px), p-6 (24px) => Inner elements = rounded-xl (12px) */}
-      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200">
+      {/* Main Product Box with Warm Luxury Background & Shadow */}
+      <div className="bg-gradient-to-br from-white/95 via-boutique-warm-white to-[#F9F4EC]/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-10 border border-boutique-border shadow-glass-card">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
           {/* Left Column: Enlarged Main Product Gallery with Interactive Zoom */}
           <div className="lg:col-span-6 space-y-4">
-            <div className="group aspect-[4/5] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 relative image-shine-wrapper shadow-xs hover:shadow-lg transition-shadow duration-500 cursor-zoom-in">
+            <div className="group aspect-[4/5] rounded-3xl overflow-hidden bg-boutique-sand/40 border border-boutique-border relative image-shine-wrapper shadow-sm hover:shadow-xl transition-shadow duration-500 cursor-zoom-in">
               <img
                 key={activeImageIndex}
                 src={product.images[activeImageIndex] || product.images[0]}
                 alt={product.name}
                 className="w-full h-full object-cover object-center group-hover:scale-108 transition-all duration-700 ease-out animate-fade-scale"
               />
-              <span className="absolute bottom-3 right-3 text-[10px] font-semibold bg-white/80 backdrop-blur-xs px-2.5 py-1 rounded-full text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">
-                Zoom details
+              <span className="absolute bottom-3 right-3 text-[10px] font-semibold bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-boutique-charcoal border border-white/60 shadow-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                Zoom fine details
               </span>
             </div>
 
@@ -108,10 +108,10 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`w-20 h-24 rounded-lg overflow-hidden border transition-all duration-300 transform hover:scale-105 ${
+                    className={`w-20 h-24 rounded-2xl overflow-hidden border transition-all duration-300 transform hover:scale-105 ${
                       activeImageIndex === idx
-                        ? 'border-accent ring-2 ring-accent/30 shadow-md scale-102'
-                        : 'border-gray-200 opacity-70 hover:opacity-100'
+                        ? 'border-boutique-rose ring-2 ring-boutique-rose/30 shadow-md scale-102'
+                        : 'border-boutique-border opacity-70 hover:opacity-100'
                     }`}
                   >
                     <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
@@ -126,41 +126,41 @@ export const ProductDetailPage: React.FC = () => {
             <div className="space-y-4">
               
               <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-accent block">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-boutique-rose block">
                   {product.categoryLabel}
                 </span>
-                <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mt-1">
+                <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-boutique-charcoal mt-1.5 leading-tight">
                   {product.name}
                 </h1>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-boutique-taupe mt-1.5">
                   {product.tagline}
                 </p>
               </div>
 
               {/* Price with Tabular Nums */}
-              <div className="flex items-baseline gap-3 pt-2 border-t border-gray-100">
-                <span className="text-3xl font-bold text-gray-900 tabular-nums">
+              <div className="flex items-baseline gap-3 pt-3 border-t border-boutique-border/70">
+                <span className="text-3xl sm:text-4xl font-bold text-boutique-charcoal tabular-nums">
                   {formatPrice(product.price)}
                 </span>
                 {product.originalPrice && (
-                  <span className="text-sm text-gray-400 line-through tabular-nums">
+                  <span className="text-sm text-boutique-muted line-through tabular-nums">
                     {formatPrice(product.originalPrice)}
                   </span>
                 )}
-                <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded ml-auto">
+                <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full ml-auto border border-emerald-100">
                   In Stock • Lagos Delivery 24-48h
                 </span>
               </div>
 
-              <p className="text-sm text-gray-600 leading-relaxed pt-2">
+              <p className="text-sm text-boutique-taupe leading-relaxed pt-2">
                 {product.description}
               </p>
 
               {/* Size Selector with Clean Labels */}
-              <div className="pt-4 border-t border-gray-100 space-y-2">
-                <div className="flex items-center justify-between text-xs font-medium text-gray-900">
+              <div className="pt-4 border-t border-boutique-border/70 space-y-2">
+                <div className="flex items-center justify-between text-xs font-semibold text-boutique-charcoal">
                   <span>Size ({product.ageRange})</span>
-                  {selectedSize && <span className="text-accent font-semibold">{selectedSize} selected</span>}
+                  {selectedSize && <span className="text-boutique-rose font-bold">{selectedSize} selected</span>}
                 </div>
 
                 <div className="flex flex-wrap gap-2">
@@ -171,10 +171,10 @@ export const ProductDetailPage: React.FC = () => {
                         setSelectedSize(size);
                         setSizeError(false);
                       }}
-                      className={`px-4 py-2 rounded-lg text-xs font-semibold transition ${
+                      className={`px-4 py-2 rounded-xl text-xs font-semibold transition ${
                         selectedSize === size
-                          ? 'bg-gray-900 text-white shadow-sm'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? 'bg-boutique-charcoal text-white shadow-xs font-bold'
+                          : 'bg-boutique-sand/40 text-boutique-taupe hover:bg-boutique-sand'
                       }`}
                     >
                       {size}
@@ -183,7 +183,7 @@ export const ProductDetailPage: React.FC = () => {
                 </div>
 
                 {sizeError && (
-                  <p className="text-xs font-semibold text-accent pt-1">
+                  <p className="text-xs font-bold text-boutique-rose pt-1">
                     Please select a size to continue.
                   </p>
                 )}
@@ -191,20 +191,20 @@ export const ProductDetailPage: React.FC = () => {
 
               {/* Quantity Selector */}
               <div className="flex items-center gap-4 pt-2">
-                <span className="text-xs font-medium text-gray-900">Quantity</span>
-                <div className="flex items-center border border-gray-200 rounded-lg bg-white">
+                <span className="text-xs font-semibold text-boutique-charcoal">Quantity</span>
+                <div className="flex items-center border border-boutique-border rounded-xl bg-white shadow-2xs">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-3 py-1.5 text-gray-600 hover:text-gray-900 font-bold"
+                    className="px-3.5 py-1.5 text-boutique-taupe hover:text-boutique-charcoal font-bold"
                   >
                     -
                   </button>
-                  <span className="px-3 text-xs font-bold text-gray-900 tabular-nums">
+                  <span className="px-3 text-xs font-bold text-boutique-charcoal tabular-nums">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-3 py-1.5 text-gray-600 hover:text-gray-900 font-bold"
+                    className="px-3.5 py-1.5 text-boutique-taupe hover:text-boutique-charcoal font-bold"
                   >
                     +
                   </button>
@@ -216,10 +216,10 @@ export const ProductDetailPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <button
                     onClick={handleAddToCart}
-                    className={`py-3.5 px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition active:scale-98 ${
+                    className={`py-3.5 px-6 rounded-2xl font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition active:scale-98 shadow-sm ${
                       addedSuccessfully
                         ? 'bg-emerald-600 text-white'
-                        : 'bg-gray-900 text-white hover:bg-black'
+                        : 'bg-boutique-charcoal text-white hover:bg-black'
                     }`}
                   >
                     {addedSuccessfully ? (
@@ -235,7 +235,7 @@ export const ProductDetailPage: React.FC = () => {
 
                   <button
                     onClick={handleInstantBooking}
-                    className="btn-accent-primary py-3.5 px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-sm"
+                    className="btn-accent-primary py-3.5 px-6 rounded-2xl font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-clay-pill"
                   >
                     Book Order Now
                   </button>
@@ -243,13 +243,13 @@ export const ProductDetailPage: React.FC = () => {
               </div>
 
               {/* Product Specifications Grouped with Spacing */}
-              <div className="pt-6 border-t border-gray-100 space-y-2 text-xs text-gray-600">
+              <div className="pt-6 border-t border-boutique-border/70 space-y-2 text-xs text-boutique-taupe">
                 <div>
-                  <strong className="text-gray-900">Fabric: </strong>
+                  <strong className="text-boutique-charcoal font-semibold">Fabric: </strong>
                   {product.fabricDetails}
                 </div>
                 <div>
-                  <strong className="text-gray-900">Care: </strong>
+                  <strong className="text-boutique-charcoal font-semibold">Care: </strong>
                   {product.careInstructions.join(' • ')}
                 </div>
               </div>

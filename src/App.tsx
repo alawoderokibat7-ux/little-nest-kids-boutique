@@ -7,6 +7,7 @@ import { CartDrawer } from './components/cart/CartDrawer';
 import { AIAssistantWidget } from './components/ai/AIAssistantWidget';
 import { MobileBottomNav } from './components/common/MobileBottomNav';
 import { MobileSearchModal } from './components/common/MobileSearchModal';
+import { LiveActivityToast } from './components/common/LiveActivityToast';
 import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
@@ -61,6 +62,9 @@ export const AppContent: React.FC = () => {
 
       {/* Mobile Sticky Bottom Navigation */}
       <MobileBottomNav />
+
+      {/* Live Social Proof Activity Toast */}
+      <LiveActivityToast />
 
       {/* Footer */}
       <Footer />

@@ -157,30 +157,33 @@ export const ShopPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       
       {/* Header with High-Contrast Typography & Gender Tabs */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200">
+      <div className="bg-gradient-to-br from-white/95 via-boutique-warm-white to-[#F9F4EC]/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 border border-boutique-border shadow-glass-card">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <h1 className="font-serif text-3xl sm:text-4xl font-bold text-gray-900">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-boutique-rose block mb-1">
+              Atelier Catalogue
+            </span>
+            <h1 className="font-serif text-3xl sm:text-4xl font-bold text-boutique-charcoal">
               {selectedGender === 'girls' ? "Girls' Outfits" : selectedGender === 'boys' ? "Boys' Outfits" : "Children's Clothing"}
             </h1>
-            <p className="text-sm text-gray-500 mt-1">
-              Showing <span className="font-semibold text-gray-900 tabular-nums">{filteredProducts.length}</span> outfits across standard age sizes
+            <p className="text-xs sm:text-sm text-boutique-taupe mt-1">
+              Showing <span className="font-bold text-boutique-charcoal tabular-nums">{filteredProducts.length}</span> curated pieces across standard age sizes
             </p>
           </div>
 
           {/* Clean Segmented Control for Gender */}
-          <div className="flex items-center p-1 bg-gray-100 rounded-xl">
+          <div className="flex items-center p-1.5 bg-boutique-sand/60 rounded-2xl border border-boutique-border/60">
             {GENDER_FILTERS.map((g) => (
               <button
                 key={g.id}
                 onClick={() => handleGenderChange(g.id as any)}
-                className={`px-4 py-2 rounded-lg text-xs font-semibold transition ${
+                className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition ${
                   selectedGender === g.id
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-white text-boutique-charcoal shadow-xs font-bold'
+                    : 'text-boutique-taupe hover:text-boutique-charcoal'
                 }`}
               >
-                {g.id === 'all' ? 'All Kids' : g.id === 'girls' ? 'Girls' : 'Boys'}
+                {g.id === 'all' ? 'All Kids' : g.id === 'girls' ? '👧 Girls' : '👦 Boys'}
               </button>
             ))}
           </div>
@@ -188,7 +191,7 @@ export const ShopPage: React.FC = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-white border border-gray-200">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-boutique-border shadow-xs">
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative">
             <input
@@ -196,11 +199,11 @@ export const ShopPage: React.FC = () => {
               placeholder="Search by keyword..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-8 py-2 text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-accent text-gray-900 w-48 sm:w-60"
+              className="pl-9 pr-8 py-2 text-xs bg-boutique-warm-white border border-boutique-border rounded-xl focus:outline-none focus:ring-2 focus:ring-boutique-rose/30 text-boutique-charcoal w-48 sm:w-64 transition"
             />
-            <Search className="w-4 h-4 text-gray-400 absolute left-2.5 top-2.5 pointer-events-none" />
+            <Search className="w-4 h-4 text-boutique-taupe absolute left-2.5 top-2.5 pointer-events-none" />
             {searchQuery && (
-              <button onClick={() => setSearchQuery('')} className="absolute right-2.5 top-2.5 text-gray-400">
+              <button onClick={() => setSearchQuery('')} className="absolute right-2.5 top-2.5 text-boutique-taupe">
                 <X className="w-3.5 h-3.5" />
               </button>
             )}
@@ -208,22 +211,22 @@ export const ShopPage: React.FC = () => {
 
           <button
             onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-            className="lg:hidden px-3 py-2 bg-gray-100 rounded-lg text-gray-900 flex items-center gap-1.5 text-xs font-semibold"
+            className="lg:hidden px-3.5 py-2 bg-boutique-sand/60 rounded-xl text-boutique-charcoal flex items-center gap-1.5 text-xs font-bold border border-boutique-border/60"
           >
-            <SlidersHorizontal className="w-4 h-4" />
+            <SlidersHorizontal className="w-4 h-4 text-boutique-rose" />
             <span>Filters ({activeFiltersCount})</span>
           </button>
         </div>
 
         {/* Sort Select */}
-        <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-xs">
-          <ArrowUpDown className="w-3.5 h-3.5 text-gray-400" />
+        <div className="flex items-center gap-2 bg-boutique-sand/40 border border-boutique-border rounded-xl px-3 py-1.5 text-xs">
+          <ArrowUpDown className="w-3.5 h-3.5 text-boutique-taupe" />
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="bg-transparent focus:outline-none text-gray-900 font-medium cursor-pointer"
+            className="bg-transparent focus:outline-none text-boutique-charcoal font-semibold cursor-pointer"
           >
-            <option value="featured">Featured</option>
+            <option value="featured">Featured Picks</option>
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
             <option value="rating">Top Rated</option>

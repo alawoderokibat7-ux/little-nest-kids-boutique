@@ -4,22 +4,27 @@
 
 @layer base {
   :root {
-    --accent: #E1496B;
-    --accent-hover: #C73556;
-    --surface: #FFFFFF;
-    --canvas: #FAFAFB;
-    --border: #E5E7EB;
-    --text-primary: #111827;
-    --text-secondary: #4B5563;
-    --text-tertiary: #6B7280;
+    --accent: #D46A7E;
+    --accent-hover: #BA5064;
+    --surface: #FFFDFB;
+    --canvas: #FAF7F2;
+    --border: #E8E1D7;
+    --text-primary: #1E1B18;
+    --text-secondary: #685F56;
+    --text-tertiary: #8F857B;
   }
 
   body {
-    background-color: #FAFAFB;
-    color: #111827;
+    background-color: #FAF7F2;
+    color: #1E1B18;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: 
+      radial-gradient(at 10% 10%, rgba(253, 242, 244, 0.7) 0px, transparent 50%),
+      radial-gradient(at 90% 20%, rgba(250, 244, 232, 0.6) 0px, transparent 50%),
+      radial-gradient(at 50% 90%, rgba(240, 244, 249, 0.6) 0px, transparent 50%);
+    background-attachment: fixed;
   }
 }
 
@@ -32,27 +37,48 @@
     text-wrap: balance;
   }
 
-  /* Glass navigation with optical subtle blur */
+  /* Glass navigation with optical warm blur */
   .system-nav {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    background: rgba(255, 253, 251, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(232, 225, 215, 0.8);
   }
 
-  /* Primary Accent CTA */
+  /* Luxury Accent CTA with Soft Tactile Bevel */
   .btn-accent-primary {
-    background-color: #E1496B;
+    background: linear-gradient(135deg, #D46A7E 0%, #C3566B 100%);
     color: #FFFFFF;
-    transition: all 0.15s ease-in-out;
+    box-shadow: 0 4px 14px rgba(212, 106, 126, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .btn-accent-primary:hover {
-    background-color: #C73556;
+    background: linear-gradient(135deg, #BA5064 0%, #A83E52 100%);
+    box-shadow: 0 6px 20px rgba(212, 106, 126, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
   }
 
   .btn-accent-primary:active {
     transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(212, 106, 126, 0.25);
+  }
+
+  /* Luxury Glass Card */
+  .boutique-card {
+    background: rgba(255, 253, 251, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(232, 225, 215, 0.9);
+    box-shadow: 0 4px 20px 0 rgba(30, 27, 24, 0.03);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .boutique-card:hover {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(212, 106, 126, 0.3);
+    box-shadow: 0 16px 36px -8px rgba(30, 27, 24, 0.08), 0 0 0 1px rgba(212, 106, 126, 0.15);
+    transform: translateY(-2px);
   }
 }
 

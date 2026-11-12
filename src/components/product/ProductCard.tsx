@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Check } from 'lucide-react';
+import { ShoppingBag, Check, Heart, Sparkles } from 'lucide-react';
 import { Product } from '../../types';
 import { formatPrice } from '../../utils/formatters';
 import { useCart } from '../../context/CartContext';
@@ -17,6 +17,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isInstantBookingOpen, setIsInstantBookingOpen] = useState(false);
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -33,20 +34,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     setIsInstantBookingOpen(true);
   };
 
+  const toggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <>
-      {/* Outer Card: rounded-2xl, p-2.5 on mobile, p-3 on desktop */}
-      <div className="group bg-white rounded-2xl p-2.5 sm:p-3 border border-gray-200/80 hover:border-gray-300 transition-all flex flex-col justify-between">
+      {/* Outer Card with Luxury Warm Border & Hover Shadow */}
+      <div className="group bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3 border border-boutique-border hover:border-boutique-rose/40 hover:shadow-glass-hover transition-all duration-300 flex flex-col justify-between relative">
         
-        {/* Product Visual with Shimmer & Scale Animations */}
+        {/* Product Visual Container */}
         <Link 
           to={`/product/${product.id}`} 
-          className="relative block w-full aspect-[4/5] rounded bg-gray-100 overflow-hidden image-shine-wrapper shadow-2xs group-hover:shadow-md transition-shadow duration-500"
+          className="relative block w-full aspect-[4/5] rounded-xl bg-boutique-sand/40 overflow-hidden image-shine-wrapper shadow-2xs group-hover:shadow-md transition-shadow duration-500"
         >
           {/* Skeleton Shimmer */}
           {!isImgLoaded && (
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-boutique-sand/60 via-boutique-rose-light/40 to-boutique-sand/60 animate-pulse" />
           )}
+
           <img
             src={product.images[currentImgIndex] || product.images[0]}
             alt={product.name}
@@ -63,28 +71,56 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             }`}
             loading="lazy"
           />
+
+          {/* Top Floating Badges */}
+          <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
+            {product.isNewArrival ? (
+              <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-md text-boutique-rose shadow-xs border border-white/60">
+                New Atelier
+              </span>
+            ) : product.price < 20000 ? (
+              <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-amber-50/90 backdrop-blur-md text-amber-800 shadow-xs border border-amber-200/60">
+                Essential
+              </span>
+            ) : (
+              <span />
+            )}
+
+            {/* Favorite Heart Button */}
+            <button
+              onClick={toggleFavorite}
+              className={`w-7 h-7 rounded-full flex items-center justify-center transition-all pointer-events-auto backdrop-blur-md shadow-xs ${
+                isFavorite
+                  ? 'bg-boutique-rose text-white'
+                  : 'bg-white/80 text-boutique-taupe hover:text-boutique-rose hover:bg-white'
+              }`}
+              aria-label="Add to wishlist"
+            >
+              <Heart className={`w-3.5 h-3.5 ${isFavorite ? 'fill-current' : ''}`} />
+            </button>
+          </div>
         </Link>
 
         {/* Content Grouped with Intentional Spacing */}
         <div className="pt-2 sm:pt-3 flex flex-col flex-grow justify-between">
           <div>
-            <div className="flex items-center justify-between text-[10px] sm:text-xs text-gray-500 mb-1">
+            <div className="flex items-center justify-between text-[10px] sm:text-xs text-boutique-taupe mb-1 font-medium">
               <span>{product.ageRange}</span>
               <span className="capitalize">{product.gender}</span>
             </div>
 
             <Link to={`/product/${product.id}`} className="block">
-              <h3 className="font-medium text-xs sm:text-sm text-gray-900 group-hover:text-accent transition-colors line-clamp-1">
+              <h3 className="font-serif font-bold text-xs sm:text-sm text-boutique-charcoal group-hover:text-boutique-rose transition-colors line-clamp-1">
                 {product.name}
               </h3>
             </Link>
 
             <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2">
-              <span className="text-xs sm:text-base font-bold text-gray-900 tabular-nums">
+              <span className="text-xs sm:text-base font-bold text-boutique-charcoal tabular-nums">
                 {formatPrice(product.price)}
               </span>
               {product.originalPrice && (
-                <span className="text-[10px] sm:text-xs text-gray-400 line-through tabular-nums">
+                <span className="text-[10px] sm:text-xs text-boutique-muted line-through tabular-nums">
                   {formatPrice(product.originalPrice)}
                 </span>
               )}
@@ -92,7 +128,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
 
           {/* Size Selector Strip */}
-          <div className="mt-2 sm:mt-3 pt-2 border-t border-gray-100">
+          <div className="mt-2 sm:mt-2.5 pt-2 border-t border-boutique-border/70">
             <div className="flex flex-wrap gap-1">
               {product.availableSizes.map((size) => (
                 <button
@@ -101,10 +137,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     e.preventDefault();
                     setSelectedSize(size);
                   }}
-                  className={`px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-medium transition ${
+                  className={`px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-semibold transition ${
                     selectedSize === size
-                      ? 'bg-gray-900 text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      ? 'bg-boutique-charcoal text-white shadow-xs'
+                      : 'bg-boutique-sand/40 text-boutique-taupe hover:bg-boutique-sand'
                   }`}
                 >
                   {size}
@@ -117,10 +153,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="mt-2.5 sm:mt-3 flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={handleQuickAdd}
-              className={`flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition-all ${
+              className={`flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1 transition-all ${
                 justAdded
                   ? 'bg-emerald-600 text-white animate-cart-pulse'
-                  : 'bg-gray-900 text-white hover:bg-black active:scale-98'
+                  : 'bg-boutique-charcoal text-white hover:bg-black active:scale-98 shadow-xs'
               }`}
             >
               {justAdded ? (
@@ -136,7 +172,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </button>
             <button
               onClick={handleQuickBook}
-              className="py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-lg bg-accent text-white hover:bg-accent-hover text-xs font-semibold transition active:scale-98"
+              className="btn-accent-primary py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition active:scale-98 shadow-clay-pill"
               title="Instant Order Booking"
             >
               Book
