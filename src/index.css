@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: #E1496B;
+    --accent-hover: #C73556;
+    --surface: #FFFFFF;
+    --canvas: #FAFAFB;
+    --border: #E5E7EB;
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --text-tertiary: #6B7280;
+  }
+
+  body {
+    background-color: #FAFAFB;
+    color: #111827;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Glass navigation with optical subtle blur */
+  .system-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+  }
+
+  /* Primary Accent CTA */
+  .btn-accent-primary {
+    background-color: #E1496B;
+    color: #FFFFFF;
+    transition: all 0.15s ease-in-out;
+  }
+
+  .btn-accent-primary:hover {
+    background-color: #C73556;
+  }
+
+  .btn-accent-primary:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Micro-feedback animations */
+@keyframes cartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.animate-cart-pulse {
+  animation: cartPulse 0.3s ease-in-out;
+}
