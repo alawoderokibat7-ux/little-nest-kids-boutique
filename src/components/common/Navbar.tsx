@@ -4,7 +4,7 @@ import { ShoppingBag, Search, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 export const Navbar: React.FC = () => {
-  const { itemCount, setIsCartOpen } = useCart();
+  const { itemCount, setIsCartOpen, setIsSearchOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
@@ -87,6 +87,15 @@ export const Navbar: React.FC = () => {
             >
               Orders Log
             </Link>
+
+            {/* Mobile Search Trigger */}
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="sm:hidden p-2 text-gray-700 hover:text-gray-900 rounded-lg"
+              aria-label="Open search"
+            >
+              <Search className="w-5 h-5" />
+            </button>
 
             {/* Cart Button */}
             <button

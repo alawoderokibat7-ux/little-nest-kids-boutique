@@ -5,6 +5,8 @@ import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
 import { AIAssistantWidget } from './components/ai/AIAssistantWidget';
+import { MobileBottomNav } from './components/common/MobileBottomNav';
+import { MobileSearchModal } from './components/common/MobileSearchModal';
 import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
@@ -37,7 +39,7 @@ export const AppContent: React.FC = () => {
       <GlobalToast />
 
       {/* Pages */}
-      <main className="flex-grow">
+      <main className="flex-grow pb-16 lg:pb-0">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
@@ -53,6 +55,12 @@ export const AppContent: React.FC = () => {
 
       {/* Cart Drawer */}
       <CartDrawer />
+
+      {/* Mobile Search Modal */}
+      <MobileSearchModal />
+
+      {/* Mobile Sticky Bottom Navigation */}
+      <MobileBottomNav />
 
       {/* Footer */}
       <Footer />

@@ -82,10 +82,10 @@ export const OrderBookingModal: React.FC<OrderBookingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm overflow-y-auto">
-      {/* Outer Modal: rounded-2xl (16px), p-6 (24px) */}
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-gray-900/60 backdrop-blur-sm overflow-y-auto">
+      {/* Outer Modal: rounded-t-2xl on mobile, rounded-2xl on desktop */}
       <div 
-        className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden my-6"
+        className="relative w-full max-w-lg bg-white rounded-t-2xl sm:rounded-2xl shadow-xl border border-gray-200 overflow-y-auto max-h-[94vh] sm:max-h-[90vh] my-0 sm:my-6"
         onClick={(e) => e.stopPropagation()}
       >
         {!confirmedOrder ? (

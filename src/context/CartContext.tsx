@@ -11,6 +11,10 @@ interface CartContextType {
   itemCount: number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
+  isSearchOpen: boolean;
+  setIsSearchOpen: (open: boolean) => void;
+  isAIOpen: boolean;
+  setIsAIOpen: (open: boolean) => void;
   toastMessage: string | null;
   clearToast: () => void;
 }
@@ -33,6 +37,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isAIOpen, setIsAIOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -128,6 +134,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         itemCount,
         isCartOpen,
         setIsCartOpen,
+        isSearchOpen,
+        setIsSearchOpen,
+        isAIOpen,
+        setIsAIOpen,
         toastMessage,
         clearToast,
       }}

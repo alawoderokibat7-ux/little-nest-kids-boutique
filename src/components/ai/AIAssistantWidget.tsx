@@ -7,12 +7,23 @@ import { Link } from 'react-router-dom';
 import { Product } from '../../types';
 
 export const AIAssistantWidget: React.FC = () => {
+  const { addToCart, isAIOpen, setIsAIOpen } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [inputQuery, setInputQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const { addToCart } = useCart();
   const [addedItemMap, setAddedItemMap] = useState<{ [key: string]: boolean }>({});
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isAIOpen) {
+      setIsOpen(true);
+    }
+  }, [isAIOpen]);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setIsAIOpen(false);
+  };
 
   const [messages, setMessages] = useState<AssistantMessage[]>([
     {
@@ -82,60 +93,62 @@ export const AIAssistantWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-4 sm:right-6 z-40">
-      
-      {/* Discreet, Sleek Glassmorphic Floating Button */}
+    <>
+      {/* Floating Button for Desktop Screens */}
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/90 backdrop-blur-xl border border-white text-crystal-dark shadow-glass-card hover:shadow-glass-hover hover:scale-105 active:scale-95 transition-all duration-300"
-          aria-label="Open AI Shopping Concierge"
-        >
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-crystal-rose to-crystal-violet text-white flex items-center justify-center shadow-xs">
-            <Sparkles className="w-3.5 h-3.5" />
-          </div>
-          <div className="text-left pr-1">
-            <span className="block text-xs font-bold leading-tight text-crystal-dark">
-              AI Stylist
-            </span>
-            <span className="block text-[10px] text-crystal-slate">
-              Need fit help?
-            </span>
-          </div>
-          <span className="w-2 h-2 rounded-full bg-emerald-500 absolute -top-0.5 -right-0.5 ring-2 ring-white" />
-        </button>
+        <div className="hidden lg:block fixed bottom-5 right-6 z-40">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="group relative flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/90 backdrop-blur-xl border border-white text-crystal-dark shadow-glass-card hover:shadow-glass-hover hover:scale-105 active:scale-95 transition-all duration-300"
+            aria-label="Open AI Shopping Concierge"
+          >
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-crystal-rose to-crystal-violet text-white flex items-center justify-center shadow-xs">
+              <Sparkles className="w-3.5 h-3.5" />
+            </div>
+            <div className="text-left pr-1">
+              <span className="block text-xs font-bold leading-tight text-crystal-dark">
+                AI Stylist
+              </span>
+              <span className="block text-[10px] text-crystal-slate">
+                Need fit help?
+              </span>
+            </div>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 absolute -top-0.5 -right-0.5 ring-2 ring-white" />
+          </button>
+        </div>
       )}
 
-      {/* Floating Crystal Glass Chat Drawer */}
+      {/* Floating Crystal Glass Chat Drawer - Responsive Mobile Sheet */}
       {isOpen && (
-        <div className="w-[92vw] sm:w-[400px] h-[540px] max-h-[82vh] bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white flex flex-col overflow-hidden animate-fadeIn">
-          
-          {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-crystal-canvas via-white to-crystal-rose-glow/60 border-b border-crystal-border flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-crystal-rose to-crystal-violet text-white flex items-center justify-center shadow-xs">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <h3 className="font-serif font-bold text-xs text-crystal-dark">
-                    Little Nest AI Concierge
-                  </h3>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-5 sm:right-6 z-50 flex flex-col justify-end sm:justify-start bg-black/40 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none">
+          <div className="w-full sm:w-[400px] h-[85vh] sm:h-[540px] max-h-[85vh] sm:max-h-[82vh] bg-white/95 backdrop-blur-2xl rounded-t-3xl sm:rounded-3xl shadow-2xl border border-white flex flex-col overflow-hidden animate-fadeIn">
+            
+            {/* Header */}
+            <div className="p-4 bg-gradient-to-r from-crystal-canvas via-white to-crystal-rose-glow/60 border-b border-crystal-border flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-crystal-rose to-crystal-violet text-white flex items-center justify-center shadow-xs">
+                  <Sparkles className="w-4 h-4" />
                 </div>
-                <p className="text-[10px] text-crystal-muted">
-                  Boutique Catalogue Assistant
-                </p>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="font-serif font-bold text-xs text-crystal-dark">
+                      Little Nest AI Concierge
+                    </h3>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  </div>
+                  <p className="text-[10px] text-crystal-muted">
+                    Boutique Catalogue Assistant
+                  </p>
+                </div>
               </div>
+              <button
+                onClick={handleClose}
+                className="p-1.5 rounded-xl text-crystal-muted hover:text-crystal-dark hover:bg-crystal-canvas transition"
+                aria-label="Close assistant"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-xl text-crystal-muted hover:text-crystal-dark hover:bg-crystal-canvas transition"
-              aria-label="Close assistant"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
 
           {/* Messages Feed */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-crystal-canvas/40">
@@ -277,8 +290,9 @@ export const AIAssistantWidget: React.FC = () => {
               <Send className="w-3.5 h-3.5" />
             </button>
           </form>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };

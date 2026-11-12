@@ -22,7 +22,7 @@ export const CartDrawer: React.FC = () => {
         onClick={() => setIsCartOpen(false)}
       >
         <div 
-          className="absolute inset-y-0 right-0 max-w-full flex pl-10"
+          className="absolute inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col">

@@ -232,12 +232,36 @@ export const ShopPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile Horizontal Quick-Category Pills */}
+      <div className="lg:hidden flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar -mx-4 px-4">
+        {[
+          { label: 'All Outfits', onClick: () => { handleGenderChange('all'); handleCategoryChange('all'); }, active: selectedGender === 'all' && selectedCategory === 'all' },
+          { label: '👧 Girls', onClick: () => handleGenderChange('girls'), active: selectedGender === 'girls' },
+          { label: '👦 Boys', onClick: () => handleGenderChange('boys'), active: selectedGender === 'boys' },
+          { label: 'Partywear', onClick: () => handleCategoryChange('dresses-partywear'), active: selectedCategory === 'dresses-partywear' },
+          { label: 'Matching Sets', onClick: () => handleCategoryChange('matching-sets'), active: selectedCategory === 'matching-sets' },
+          { label: 'Baby 1–3y', onClick: () => handleCategoryChange('baby'), active: selectedCategory === 'baby' },
+        ].map((chip) => (
+          <button
+            key={chip.label}
+            onClick={chip.onClick}
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+              chip.active
+                ? 'bg-gray-900 text-white shadow-xs'
+                : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-400'
+            }`}
+          >
+            {chip.label}
+          </button>
+        ))}
+      </div>
+
       {/* Layout Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
         
         {/* Sidebar Filters */}
-        <aside className={`lg:block ${mobileFilterOpen ? 'fixed inset-0 z-50 bg-black/40 p-4 flex items-center justify-center' : 'hidden'}`}>
-          <div className="bg-white rounded-2xl p-5 border border-gray-200 space-y-6 w-full max-w-sm">
+        <aside className={`lg:block ${mobileFilterOpen ? 'fixed inset-0 z-50 bg-black/50 p-0 sm:p-4 flex items-end sm:items-center justify-center' : 'hidden'}`}>
+          <div className="bg-white rounded-t-3xl sm:rounded-2xl p-5 border border-gray-200 space-y-5 w-full max-w-sm max-h-[85vh] overflow-y-auto animate-fadeIn">
             
             <div className="flex items-center justify-between pb-3 border-b border-gray-100">
               <h3 className="font-semibold text-sm text-gray-900">
@@ -349,9 +373,9 @@ export const ShopPage: React.FC = () => {
             {mobileFilterOpen && (
               <button
                 onClick={() => setMobileFilterOpen(false)}
-                className="w-full py-2.5 btn-accent-primary rounded-xl text-xs font-semibold mt-4"
+                className="w-full py-3 btn-accent-primary rounded-xl text-xs font-semibold mt-4 shadow-sm"
               >
-                Apply Filters
+                Show {filteredProducts.length} Outfits
               </button>
             )}
 
@@ -376,7 +400,7 @@ export const ShopPage: React.FC = () => {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

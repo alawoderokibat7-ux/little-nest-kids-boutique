@@ -267,13 +267,44 @@ export const ProductDetailPage: React.FC = () => {
               View All
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {relatedProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
         </div>
       )}
+
+      {/* Mobile Sticky Purchase Bar */}
+      <div className="lg:hidden fixed bottom-14 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-gray-200/90 p-2.5 px-4 flex items-center justify-between gap-3 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+        <div>
+          <span className="block text-[10px] text-gray-500 font-medium">
+            {selectedSize ? `Size: ${selectedSize}` : 'Select a size'}
+          </span>
+          <span className="text-sm font-bold text-gray-900 tabular-nums">
+            {formatPrice(product.price)}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleAddToCart}
+            className={`py-2 px-3.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${
+              addedSuccessfully
+                ? 'bg-emerald-600 text-white'
+                : 'bg-gray-900 text-white'
+            }`}
+          >
+            {addedSuccessfully ? <Check className="w-3.5 h-3.5" /> : <ShoppingBag className="w-3.5 h-3.5" />}
+            <span>{addedSuccessfully ? 'Added' : 'Add to Bag'}</span>
+          </button>
+          <button
+            onClick={handleInstantBooking}
+            className="py-2 px-3.5 rounded-xl btn-accent-primary text-xs font-semibold shadow-xs"
+          >
+            Book
+          </button>
+        </div>
+      </div>
 
       {/* Order Booking Modal */}
       {isCheckoutModalOpen && (

@@ -33,10 +33,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <>
-      {/* Outer Card: rounded-2xl (16px), p-3 (12px) => Inner Image Radius = 16px - 12px = 4px (rounded) */}
-      <div className="group bg-white rounded-2xl p-3 border border-gray-200/80 hover:border-gray-300 transition-all flex flex-col justify-between">
+      {/* Outer Card: rounded-2xl, p-2.5 on mobile, p-3 on desktop */}
+      <div className="group bg-white rounded-2xl p-2.5 sm:p-3 border border-gray-200/80 hover:border-gray-300 transition-all flex flex-col justify-between">
         
-        {/* Product Visual - Clean, Uninhibited by Clutter */}
+        {/* Product Visual */}
         <Link 
           to={`/product/${product.id}`} 
           className="relative block w-full aspect-[4/5] rounded bg-gray-100 overflow-hidden"
@@ -50,25 +50,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </Link>
 
         {/* Content Grouped with Intentional Spacing */}
-        <div className="pt-3 flex flex-col flex-grow justify-between">
+        <div className="pt-2 sm:pt-3 flex flex-col flex-grow justify-between">
           <div>
-            <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
+            <div className="flex items-center justify-between text-[10px] sm:text-xs text-gray-500 mb-1">
               <span>{product.ageRange}</span>
               <span className="capitalize">{product.gender}</span>
             </div>
 
             <Link to={`/product/${product.id}`} className="block">
-              <h3 className="font-medium text-sm text-gray-900 group-hover:text-accent transition-colors line-clamp-1">
+              <h3 className="font-medium text-xs sm:text-sm text-gray-900 group-hover:text-accent transition-colors line-clamp-1">
                 {product.name}
               </h3>
             </Link>
 
-            <div className="mt-1 flex items-baseline gap-2">
-              <span className="text-base font-semibold text-gray-900 tabular-nums">
+            <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2">
+              <span className="text-xs sm:text-base font-bold text-gray-900 tabular-nums">
                 {formatPrice(product.price)}
               </span>
               {product.originalPrice && (
-                <span className="text-xs text-gray-400 line-through tabular-nums">
+                <span className="text-[10px] sm:text-xs text-gray-400 line-through tabular-nums">
                   {formatPrice(product.originalPrice)}
                 </span>
               )}
@@ -76,7 +76,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
 
           {/* Size Selector Strip */}
-          <div className="mt-3 pt-2.5 border-t border-gray-100">
+          <div className="mt-2 sm:mt-3 pt-2 border-t border-gray-100">
             <div className="flex flex-wrap gap-1">
               {product.availableSizes.map((size) => (
                 <button
@@ -85,7 +85,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     e.preventDefault();
                     setSelectedSize(size);
                   }}
-                  className={`px-2 py-0.5 rounded text-[11px] font-medium transition ${
+                  className={`px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-medium transition ${
                     selectedSize === size
                       ? 'bg-gray-900 text-white'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -98,10 +98,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
 
           {/* Primary Action Buttons */}
-          <div className="mt-3 flex items-center gap-2">
+          <div className="mt-2.5 sm:mt-3 flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={handleQuickAdd}
-              className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 transition-all ${
+              className={`flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition-all ${
                 justAdded
                   ? 'bg-emerald-600 text-white animate-cart-pulse'
                   : 'bg-gray-900 text-white hover:bg-black active:scale-98'
@@ -113,13 +113,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 </>
               ) : (
                 <>
-                  <ShoppingBag className="w-3.5 h-3.5" /> Add to Bag
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  <span>Add<span className="hidden sm:inline"> to Bag</span></span>
                 </>
               )}
             </button>
             <button
               onClick={handleQuickBook}
-              className="py-2 px-3 rounded-lg bg-accent text-white hover:bg-accent-hover text-xs font-semibold transition active:scale-98"
+              className="py-1.5 sm:py-2 px-2.5 sm:px-3 rounded-lg bg-accent text-white hover:bg-accent-hover text-xs font-semibold transition active:scale-98"
               title="Instant Order Booking"
             >
               Book
