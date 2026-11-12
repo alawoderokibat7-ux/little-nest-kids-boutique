@@ -84,8 +84,8 @@ export const ProductDetailPage: React.FC = () => {
         <span className="text-gray-900 font-medium truncate max-w-[200px]">{product.name}</span>
       </nav>
 
-      {/* Main Product Box with Warm Luxury Background & Shadow */}
-      <div className="bg-gradient-to-br from-white/95 via-boutique-warm-white to-[#F9F4EC]/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-10 border border-boutique-border shadow-glass-card">
+      {/* Main Product Box with Frosted Glassmorphism */}
+      <div className="glass-panel rounded-3xl p-6 sm:p-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
           {/* Left Column: Enlarged Main Product Gallery with Interactive Zoom */}
@@ -315,6 +315,7 @@ export const ProductDetailPage: React.FC = () => {
         <OrderBookingModal
           cartItems={[{ product, selectedSize, quantity }]}
           subtotal={product.price * quantity}
+          clearCartOnSuccess={false}
           onClose={() => setIsCheckoutModalOpen(false)}
         />
       )}

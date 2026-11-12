@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Check, Heart, Sparkles } from 'lucide-react';
+import { ShoppingBag, Check, Heart } from 'lucide-react';
 import { Product } from '../../types';
 import { formatPrice } from '../../utils/formatters';
 import { useCart } from '../../context/CartContext';
@@ -42,13 +42,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <>
-      {/* Outer Card with Luxury Warm Border & Hover Shadow */}
-      <div className="group bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3 border border-boutique-border hover:border-boutique-rose/40 hover:shadow-glass-hover transition-all duration-300 flex flex-col justify-between relative">
+      {/* Outer Card with Frosted Glassmorphism & Translucent Glow */}
+      <div className="group glass-card rounded-3xl p-3 sm:p-3.5 flex flex-col justify-between relative">
         
         {/* Product Visual Container */}
         <Link 
           to={`/product/${product.id}`} 
-          className="relative block w-full aspect-[4/5] rounded-xl bg-boutique-sand/40 overflow-hidden image-shine-wrapper shadow-2xs group-hover:shadow-md transition-shadow duration-500"
+          className="relative block w-full aspect-[4/5] rounded-2xl bg-white/40 backdrop-blur-md overflow-hidden image-shine-wrapper shadow-xs border border-white/70 group-hover:border-white transition-all duration-500"
         >
           {/* Skeleton Shimmer */}
           {!isImgLoaded && (
@@ -137,10 +137,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     e.preventDefault();
                     setSelectedSize(size);
                   }}
-                  className={`px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-semibold transition ${
+                  className={`px-1.5 sm:px-2 py-0.5 rounded-lg text-[10px] sm:text-[11px] font-semibold transition ${
                     selectedSize === size
                       ? 'bg-boutique-charcoal text-white shadow-xs'
-                      : 'bg-boutique-sand/40 text-boutique-taupe hover:bg-boutique-sand'
+                      : 'bg-white/60 backdrop-blur-xs text-boutique-taupe hover:bg-white border border-white/70'
                   }`}
                 >
                   {size}
@@ -187,6 +187,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <OrderBookingModal
           cartItems={[{ product, selectedSize, quantity: 1 }]}
           subtotal={product.price}
+          clearCartOnSuccess={false}
           onClose={() => setIsInstantBookingOpen(false)}
         />
       )}

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { 
   TrendingUp, 
   ShoppingBag, 
-  CheckCircle, 
   Package,
-  Bell
+  Bell,
+  AlertCircle,
+  ShieldCheck
 } from 'lucide-react';
 import { DEMO_PRODUCTS } from '../data/products';
 import { formatPrice } from '../utils/formatters';
@@ -27,7 +28,7 @@ export const AdminDemoPage: React.FC = () => {
   const demoOrders: DemoOrder[] = [
     {
       id: 'ORD-LN-9421',
-      customerName: 'Mrs. Folake Adeleke',
+      customerName: 'Mrs. Folake Adeleke (Sample)',
       phone: '+234 803 *** 4129',
       location: 'Ikoyi, Lagos',
       itemsSummary: 'Blossom Petal Tulle Party Dress (Size: 5Y, Qty: 1)',
@@ -38,7 +39,7 @@ export const AdminDemoPage: React.FC = () => {
     },
     {
       id: 'ORD-LN-9422',
-      customerName: 'Chidinma Eze',
+      customerName: 'Chidinma Eze (Sample)',
       phone: '+234 812 *** 8803',
       location: 'Maitama, Abuja',
       itemsSummary: 'Little Gentleman Linen Vest Set (Size: 4Y) + Rose Gold Shoes (Size: EU 26)',
@@ -49,7 +50,7 @@ export const AdminDemoPage: React.FC = () => {
     },
     {
       id: 'ORD-LN-9423',
-      customerName: 'Dr. Amina Bello',
+      customerName: 'Dr. Amina Bello (Sample)',
       phone: '+234 706 *** 1920',
       location: 'Victoria Island, Lagos',
       itemsSummary: 'Brother & Sister Matching Olive Linen Duo (Size: 4Y-6Y)',
@@ -60,7 +61,7 @@ export const AdminDemoPage: React.FC = () => {
     },
     {
       id: 'ORD-LN-9424',
-      customerName: 'Grace Obinna',
+      customerName: 'Grace Obinna (Sample)',
       phone: '+234 802 *** 9451',
       location: 'Lekki Phase 1, Lagos',
       itemsSummary: 'Golden Honey Birthday Gown (Size: 5Y) + Hair Bow Set (Pack of 3)',
@@ -71,7 +72,7 @@ export const AdminDemoPage: React.FC = () => {
     },
     {
       id: 'ORD-LN-9425',
-      customerName: 'Kemi Sowemimo',
+      customerName: 'Kemi Sowemimo (Sample)',
       phone: '+234 818 *** 3004',
       location: 'Ikeja GRA, Lagos',
       itemsSummary: 'Coastal Sailor Knit Polo Set (Size: 2T, Qty: 2)',
@@ -90,25 +91,42 @@ export const AdminDemoPage: React.FC = () => {
   const totalPipeline = demoOrders.reduce((sum, e) => sum + e.total, 0);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fadeIn">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 animate-fadeIn">
       
       {/* Header Banner */}
       <div className="bg-gray-900 text-white rounded-2xl p-6 sm:p-8 border border-gray-800">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[11px] font-semibold border border-amber-500/30 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              Client Showcase Demo · Sample Data
+            </div>
             <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight">
-              Store Order Management & Dispatch Hub
+              Sample Orders & Dispatch Showcase
             </h1>
             <p className="text-xs sm:text-sm text-gray-400 mt-1 max-w-xl">
-              Live log of incoming customer bookings, SMS dispatch alerts, and delivery statuses.
+              Demonstration interface showing how staff view incoming order bookings, customer notes, and dispatch fulfillment stages.
             </p>
           </div>
           <div className="bg-gray-800 p-3 rounded-xl border border-gray-700 text-xs">
             <span className="text-gray-400 block text-[11px]">System Status:</span>
-            <span className="font-semibold text-emerald-400 flex items-center gap-1.5 mt-0.5">
-              <CheckCircle className="w-3.5 h-3.5" /> Live Automated Dispatch
+            <span className="font-semibold text-amber-400 flex items-center gap-1.5 mt-0.5">
+              <AlertCircle className="w-3.5 h-3.5" /> Simulated Demo Mode
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Prominent Demo Notice Box */}
+      <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3">
+        <ShieldCheck className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
+        <div className="leading-relaxed space-y-1">
+          <p className="font-bold text-amber-950">
+            Showcase Demonstration Note:
+          </p>
+          <p className="text-amber-900/90">
+            All records, customer details, and dispatch statuses shown here are mock demonstration samples. In production, real customer orders are kept behind authenticated staff credentials (RBAC) with server-side database persistence, webhooks, and live courier integrations.
+          </p>
         </div>
       </div>
 
@@ -118,7 +136,7 @@ export const AdminDemoPage: React.FC = () => {
         <div className="p-5 rounded-2xl bg-white border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Total Order Volume
+              Sample Order Volume
             </span>
             <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700">
               <TrendingUp className="w-4 h-4" />
@@ -128,8 +146,8 @@ export const AdminDemoPage: React.FC = () => {
             <span className="font-serif text-2xl sm:text-3xl font-bold text-gray-900 tabular-nums">
               {formatPrice(totalPipeline)}
             </span>
-            <span className="block text-xs text-emerald-600 font-semibold mt-0.5">
-              5 confirmed bookings
+            <span className="block text-xs text-amber-600 font-semibold mt-0.5">
+              5 sample mock orders
             </span>
           </div>
         </div>
@@ -137,7 +155,7 @@ export const AdminDemoPage: React.FC = () => {
         <div className="p-5 rounded-2xl bg-white border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              SMS Confirmations
+              Sample SMS Alerts
             </span>
             <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700">
               <Bell className="w-4 h-4" />
@@ -148,7 +166,7 @@ export const AdminDemoPage: React.FC = () => {
               100%
             </span>
             <span className="block text-xs text-gray-500 mt-0.5">
-              Instant alerts dispatched
+              Simulated alert delivery rate
             </span>
           </div>
         </div>
@@ -156,7 +174,7 @@ export const AdminDemoPage: React.FC = () => {
         <div className="p-5 rounded-2xl bg-white border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Active Styles
+              Catalogue Styles
             </span>
             <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700">
               <ShoppingBag className="w-4 h-4" />
@@ -167,7 +185,7 @@ export const AdminDemoPage: React.FC = () => {
               {DEMO_PRODUCTS.length} Outfits
             </span>
             <span className="block text-xs text-gray-500 mt-0.5">
-              Ages 1 to 13
+              Children ages 1 to 13
             </span>
           </div>
         </div>
@@ -175,7 +193,7 @@ export const AdminDemoPage: React.FC = () => {
         <div className="p-5 rounded-2xl bg-white border border-gray-200">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Preferred Payment
+              Popular Payment Mode
             </span>
             <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-700">
               <Package className="w-4 h-4" />
@@ -186,7 +204,7 @@ export const AdminDemoPage: React.FC = () => {
               Pay on Delivery
             </span>
             <span className="block text-xs text-gray-500 mt-0.5">
-              Lagos & Abuja Doorstep
+              Simulated for Lagos & Abuja
             </span>
           </div>
         </div>
@@ -198,10 +216,10 @@ export const AdminDemoPage: React.FC = () => {
         <div className="p-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h3 className="font-serif font-bold text-base text-gray-900">
-              Customer Orders Log
+              Sample Orders Register (Demonstration)
             </h3>
             <p className="text-xs text-gray-500">
-              Real-time records from website checkout bookings
+              Illustrative records simulating incoming website bookings
             </p>
           </div>
 
@@ -226,12 +244,12 @@ export const AdminDemoPage: React.FC = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 text-[11px] uppercase tracking-wider font-semibold text-gray-500 border-b border-gray-100">
-                <th className="py-3 px-4">Order Ref</th>
-                <th className="py-3 px-4">Customer</th>
+                <th className="py-3 px-4">Sample Ref</th>
+                <th className="py-3 px-4">Customer Details</th>
                 <th className="py-3 px-4">Reserved Outfits</th>
                 <th className="py-3 px-4">Total Amount</th>
                 <th className="py-3 px-4">Payment</th>
-                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4">Simulated Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 text-xs">

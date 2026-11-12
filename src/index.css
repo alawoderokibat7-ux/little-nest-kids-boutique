@@ -6,25 +6,29 @@
   :root {
     --accent: #D46A7E;
     --accent-hover: #BA5064;
-    --surface: #FFFDFB;
-    --canvas: #FAF7F2;
-    --border: #E8E1D7;
+    --surface: rgba(255, 255, 255, 0.65);
+    --canvas: #F8F3F6;
+    --border: rgba(255, 255, 255, 0.7);
     --text-primary: #1E1B18;
-    --text-secondary: #685F56;
-    --text-tertiary: #8F857B;
+    --text-secondary: #5C5248;
+    --text-tertiary: #8A7E73;
   }
 
   body {
-    background-color: #FAF7F2;
+    background-color: #F8F3F6;
     color: #1E1B18;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: 
-      radial-gradient(at 10% 10%, rgba(253, 242, 244, 0.7) 0px, transparent 50%),
-      radial-gradient(at 90% 20%, rgba(250, 244, 232, 0.6) 0px, transparent 50%),
-      radial-gradient(at 50% 90%, rgba(240, 244, 249, 0.6) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(254, 215, 226, 0.85) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(233, 223, 252, 0.8) 0px, transparent 50%),
+      radial-gradient(at 50% 30%, rgba(254, 243, 199, 0.6) 0px, transparent 45%),
+      radial-gradient(at 5% 65%, rgba(219, 234, 254, 0.75) 0px, transparent 50%),
+      radial-gradient(at 95% 75%, rgba(253, 226, 236, 0.85) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(237, 233, 254, 0.7) 0px, transparent 50%);
     background-attachment: fixed;
+    background-size: cover;
   }
 }
 
@@ -37,48 +41,58 @@
     text-wrap: balance;
   }
 
-  /* Glass navigation with optical warm blur */
+  /* True Glassmorphic Navigation */
   .system-nav {
-    background: rgba(255, 253, 251, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(232, 225, 215, 0.8);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 30px rgba(199, 137, 154, 0.06);
+  }
+
+  /* Luxury Glass Panel */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 16px 40px -10px rgba(201, 118, 131, 0.1), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  /* Luxury Glass Card */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 10px 30px -5px rgba(201, 118, 131, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 24px 50px -10px rgba(212, 106, 126, 0.22), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-3px);
   }
 
   /* Luxury Accent CTA with Soft Tactile Bevel */
   .btn-accent-primary {
     background: linear-gradient(135deg, #D46A7E 0%, #C3566B 100%);
     color: #FFFFFF;
-    box-shadow: 0 4px 14px rgba(212, 106, 126, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 18px rgba(212, 106, 126, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .btn-accent-primary:hover {
     background: linear-gradient(135deg, #BA5064 0%, #A83E52 100%);
-    box-shadow: 0 6px 20px rgba(212, 106, 126, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(212, 106, 126, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
     transform: translateY(-1px);
   }
 
   .btn-accent-primary:active {
     transform: scale(0.98);
     box-shadow: 0 2px 8px rgba(212, 106, 126, 0.25);
-  }
-
-  /* Luxury Glass Card */
-  .boutique-card {
-    background: rgba(255, 253, 251, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(232, 225, 215, 0.9);
-    box-shadow: 0 4px 20px 0 rgba(30, 27, 24, 0.03);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .boutique-card:hover {
-    background: rgba(255, 255, 255, 0.98);
-    border-color: rgba(212, 106, 126, 0.3);
-    box-shadow: 0 16px 36px -8px rgba(30, 27, 24, 0.08), 0 0 0 1px rgba(212, 106, 126, 0.15);
-    transform: translateY(-2px);
   }
 }
 

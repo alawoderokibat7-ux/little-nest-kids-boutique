@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { X, MessageCircle, Copy, Check, ExternalLink, ShieldCheck, Sparkles } from 'lucide-react';
 import { CartItem, Product } from '../../types';
 import { generateSingleProductWhatsAppMessage, generateCartWhatsAppMessage } from '../../utils/formatters';
-import { STORE_CONFIG } from '../../data/products';
 
 interface WhatsAppModalProps {
   product?: Product;
@@ -104,11 +103,14 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({
           </div>
 
           {/* Demonstration Notice */}
-          <div className="flex items-center gap-2 text-[11px] text-boutique-muted bg-stone-50 p-2.5 rounded-xl border border-stone-200">
-            <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-            <span>
-              Configured for demo WhatsApp Business line. Does not charge payment or place an unpaid order.
-            </span>
+          <div className="flex items-start gap-2 text-[11px] text-boutique-taupe bg-amber-50/70 p-3 rounded-xl border border-amber-200/80">
+            <ShieldCheck className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+            <div className="leading-tight space-y-0.5">
+              <span className="font-bold text-amber-950 block">Demo Message Preview Mode:</span>
+              <span>
+                Formatted for testing with demo placeholder recipient (+234 800 000 0000). For live boutique launch, configure the owner's verified WhatsApp Business number in store settings.
+              </span>
+            </div>
           </div>
         </div>
 

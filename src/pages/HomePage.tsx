@@ -14,11 +14,11 @@ export const HomePage: React.FC = () => {
       {/* Hero Section */}
       <section className="pt-4 sm:pt-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="relative bg-gradient-to-br from-white/95 via-boutique-warm-white to-[#F9F4EC]/60 backdrop-blur-2xl rounded-3xl p-6 sm:p-12 lg:p-16 border border-boutique-border shadow-glass-card overflow-hidden">
+          <div className="relative glass-panel rounded-3xl p-6 sm:p-12 lg:p-16 overflow-hidden">
             
             {/* Ambient Background Glow Accents */}
-            <div className="absolute -top-32 -right-32 w-96 h-96 bg-boutique-rose-light/60 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-32 -right-32 w-96 h-96 bg-boutique-rose-light/70 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
               
@@ -112,7 +112,7 @@ export const HomePage: React.FC = () => {
       {/* Boutique Pillars / Trust Badges */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
-          <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-boutique-border flex items-center gap-3">
+          <div className="p-4 sm:p-5 rounded-2xl glass-card flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-boutique-rose-light text-boutique-rose flex items-center justify-center flex-shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
@@ -122,7 +122,7 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-boutique-border flex items-center gap-3">
+          <div className="p-4 sm:p-5 rounded-2xl glass-card flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center flex-shrink-0">
               <Truck className="w-5 h-5" />
             </div>
@@ -132,7 +132,7 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-boutique-border flex items-center gap-3">
+          <div className="p-4 sm:p-5 rounded-2xl glass-card flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
@@ -142,7 +142,7 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-white/80 backdrop-blur-md border border-boutique-border flex items-center gap-3">
+          <div className="p-4 sm:p-5 rounded-2xl glass-card flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center flex-shrink-0">
               <Gift className="w-5 h-5" />
             </div>
@@ -184,7 +184,7 @@ export const HomePage: React.FC = () => {
             <Link
               key={item.label}
               to={item.path}
-              className={`boutique-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between group transition-all duration-300 ${item.bg}`}
+              className={`glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between group transition-all duration-300 ${item.bg}`}
             >
               <div>
                 <span className="text-xs font-bold text-boutique-rose tabular-nums">{item.age}</span>

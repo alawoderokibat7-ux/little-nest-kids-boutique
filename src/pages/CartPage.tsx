@@ -6,14 +6,22 @@ import { formatPrice } from '../utils/formatters';
 import { OrderBookingModal } from '../components/checkout/OrderBookingModal';
 
 export const CartPage: React.FC = () => {
-  const { cart, removeFromCart, updateQuantity, subtotal, itemCount, clearCart } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart, subtotal, itemCount } = useCart();
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+  const [checkoutCartSnapshot, setCheckoutCartSnapshot] = useState(cart);
+  const [checkoutSubtotalSnapshot, setCheckoutSubtotalSnapshot] = useState(subtotal);
+
+  const handleOpenCheckout = () => {
+    setCheckoutCartSnapshot([...cart]);
+    setCheckoutSubtotalSnapshot(subtotal);
+    setIsCheckoutModalOpen(true);
+  };
 
   const FREE_SHIPPING_THRESHOLD = 50000;
   const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const progressPercent = Math.min(100, (subtotal / FREE_SHIPPING_THRESHOLD) * 100);
 
-  if (cart.length === 0) {
+  if (cart.length === 0 && !isCheckoutModalOpen) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center space-y-4">
         <div className="w-16 h-16 rounded-2xl bg-white mx-auto flex items-center justify-center text-gray-400 border border-gray-200">
@@ -176,7 +184,7 @@ export const CartPage: React.FC = () => {
             </div>
 
             <button
-              onClick={() => setIsCheckoutModalOpen(true)}
+              onClick={handleOpenCheckout}
               className="w-full btn-accent-primary py-3.5 px-6 rounded-xl font-semibold text-xs flex items-center justify-center gap-2 shadow-sm"
             >
               <span>Proceed to Order Booking</span>
@@ -189,8 +197,9 @@ export const CartPage: React.FC = () => {
 
       {isCheckoutModalOpen && (
         <OrderBookingModal
-          cartItems={cart}
-          subtotal={subtotal}
+          cartItems={checkoutCartSnapshot.length > 0 ? checkoutCartSnapshot : cart}
+          subtotal={checkoutSubtotalSnapshot > 0 ? checkoutSubtotalSnapshot : subtotal}
+          clearCartOnSuccess={true}
           onClose={() => setIsCheckoutModalOpen(false)}
         />
       )}

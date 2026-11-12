@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, X, ArrowRight } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { DEMO_PRODUCTS } from '../../data/products';
 import { formatPrice } from '../../utils/formatters';

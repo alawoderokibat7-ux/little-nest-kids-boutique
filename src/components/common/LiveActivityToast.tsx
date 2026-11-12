@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, X, CheckCircle2 } from 'lucide-react';
-import { formatPrice } from '../../utils/formatters';
+import { X, CheckCircle2 } from 'lucide-react';
 
 interface LiveEvent {
   customer: string;
