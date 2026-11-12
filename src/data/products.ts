@@ -180,7 +180,7 @@ export const DEMO_PRODUCTS: Product[] = [
     price: 15500,
     images: [
       'https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=800&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=800&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=800&auto=format&fit=crop'
     ],
     availableSizes: ['12M', '18M', '24M', '3T'],
     inStock: true,
@@ -392,7 +392,7 @@ export const DEMO_PRODUCTS: Product[] = [
     ageMax: 3,
     price: 17000,
     images: [
-      'https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=800&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=800&auto=format&fit=crop'
     ],
     availableSizes: ['6-12M', '12-18M', '18-24M', '2-3T'],
