@@ -45,10 +45,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Outer Card with Frosted Glassmorphism & Translucent Glow */}
       <div className="group glass-card rounded-3xl p-3 sm:p-3.5 flex flex-col justify-between relative">
         
-        {/* Product Visual Container */}
+        {/* Product Visual Container - Geometrically harmonious corners: inner (12px) = outer (24px) - padding (12px) */}
         <Link 
           to={`/product/${product.id}`} 
-          className="relative block w-full aspect-[4/5] rounded-2xl bg-white/40 backdrop-blur-md overflow-hidden image-shine-wrapper shadow-xs border border-white/70 group-hover:border-white transition-all duration-500"
+          className="relative block w-full aspect-[4/5] rounded-xl bg-white/40 backdrop-blur-md overflow-hidden image-shine-wrapper shadow-xs border border-white/70 group-hover:border-white transition-all duration-500"
         >
           {/* Skeleton Shimmer */}
           {!isImgLoaded && (

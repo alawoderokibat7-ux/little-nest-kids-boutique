@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider, useCart } from './context/CartContext';
 import { AtmosphereProvider, AtmosphereBackground } from './components/common/AtmosphereBackground';
+import { SmoothScrollProvider } from './components/common/SmoothScrollProvider';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
@@ -75,11 +76,13 @@ export const AppContent: React.FC = () => {
 export default function App() {
   return (
     <BrowserRouter>
-      <AtmosphereProvider>
-        <CartProvider>
-          <AppContent />
-        </CartProvider>
-      </AtmosphereProvider>
+      <SmoothScrollProvider>
+        <AtmosphereProvider>
+          <CartProvider>
+            <AppContent />
+          </CartProvider>
+        </AtmosphereProvider>
+      </SmoothScrollProvider>
     </BrowserRouter>
   );
 }
