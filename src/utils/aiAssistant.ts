@@ -33,7 +33,7 @@ export function parseCustomerQuery(query: string): {
     return {
       matchedProducts: [],
       responseMessage: 
-`Little Nest Boutique Exchange & Return Guidelines (Demo Showcase):
+`Crown & Coral Kids Royal Exchange & Return Guidelines:
 
 • Size & Style Exchanges: We gladly accept size exchanges for unworn, unwashed pieces with all original tags attached within 3 business days of delivery in Lagos (5 business days for nationwide deliveries).
 • Quality Guarantee: Every garment is hand-inspected before gift-boxing. If you receive an item with an unexpected defect, we arrange swift courier pickup and free replacement.
@@ -108,7 +108,7 @@ Would you like to browse our collection or ask about a specific outfit?`,
     return {
       matchedProducts: [],
       responseMessage: 
-`Payment Options at Little Nest (Demo Showcase):
+`Payment Options at Crown & Coral Kids (The Royal Children's Atelier):
 
 • Pay on Delivery: Cash or POS transfer upon doorstep delivery within covered Lagos zones.
 • Bank Transfer: Direct transfer upon invoice confirmation.
@@ -342,7 +342,7 @@ Note: In this client showcase demo, payment integrations and order confirmations
   if (targetAge !== null || targetGender !== 'all' || isDress || isBirthday) {
     let msg = "I couldn't find an exact match for that combination in our current boutique inventory.";
     if (targetAge && targetAge > 13) {
-      msg = `Little Nest specializes in children from newborn up to 13 years old. We do not currently carry collections for ages above 13.`;
+      msg = `Crown & Coral specializes in children from newborn up to 13 years old. We do not currently carry collections for ages above 13.`;
     } else {
       msg = `We don't currently have an item matching those exact specifications in our sample catalogue. Would you like to view our full collection or chat with our stylist to check upcoming arrivals?`;
     }

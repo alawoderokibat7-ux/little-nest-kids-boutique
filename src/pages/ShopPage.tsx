@@ -160,11 +160,11 @@ export const ShopPage: React.FC = () => {
       <div className="glass-panel rounded-3xl p-6 sm:p-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-boutique-rose block mb-1">
-              Atelier Catalogue
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent block mb-1">
+              Crown & Coral Royal Catalogue
             </span>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-boutique-charcoal">
-              {selectedGender === 'girls' ? "Girls' Outfits" : selectedGender === 'boys' ? "Boys' Outfits" : "Children's Clothing"}
+              {selectedGender === 'girls' ? "Princesses' Royal Outfits" : selectedGender === 'boys' ? "Princes' Royal Outfits" : "Royal Children's Occasionwear"}
             </h1>
             <p className="text-xs sm:text-sm text-boutique-taupe mt-1">
               Showing <span className="font-bold text-boutique-charcoal tabular-nums">{filteredProducts.length}</span> curated pieces across standard age sizes
@@ -183,7 +183,7 @@ export const ShopPage: React.FC = () => {
                     : 'text-boutique-taupe hover:text-boutique-charcoal'
                 }`}
               >
-                {g.id === 'all' ? 'All Kids' : g.id === 'girls' ? '👧 Girls' : '👦 Boys'}
+                {g.id === 'all' ? 'All Kids' : g.id === 'girls' ? '👑 Princesses' : '👑 Princes'}
               </button>
             ))}
           </div>

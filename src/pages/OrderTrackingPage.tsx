@@ -86,10 +86,10 @@ export const OrderTrackingPage: React.FC = () => {
           <span>Priority Doorstep Tracking</span>
         </div>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-boutique-charcoal">
-          Track Your Little Nest Parcel
+          Track Your Crown & Coral Parcel
         </h1>
         <p className="text-xs sm:text-sm text-boutique-taupe max-w-md mx-auto">
-          Enter your Order ID (e.g. <span className="font-mono font-bold text-boutique-charcoal">LN-942101</span>) or phone number to see live fulfillment and courier updates.
+          Enter your Order ID (e.g. <span className="font-mono font-bold text-boutique-charcoal">CC-942101</span>) or phone number to see live fulfillment and courier updates.
         </p>
       </div>
 
@@ -262,7 +262,7 @@ export const OrderTrackingPage: React.FC = () => {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
                 <a
-                  href={`https://wa.me/2348000000000?text=${encodeURIComponent(`Hello Little Nest, I am checking on my order #${searchedOrder.id}.`)}`}
+                  href={`https://wa.me/2348000000000?text=${encodeURIComponent(`Hello Crown & Coral Concierge, I am checking on my order #${searchedOrder.id}.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-emerald-700 transition"
@@ -288,14 +288,14 @@ export const OrderTrackingPage: React.FC = () => {
                 No Record Found for "{inputCode}"
               </h3>
               <p className="text-xs text-boutique-taupe max-w-sm mx-auto">
-                Please double-check your Order ID number (e.g. <span className="font-mono font-bold">LN-942101</span>) from your checkout receipt or SMS, or contact our concierge.
+                Please double-check your Order ID number (e.g. <span className="font-mono font-bold">CC-942101</span>) from your checkout receipt or SMS, or contact our concierge.
               </p>
               <div className="pt-2">
                 <a
-                  href="https://wa.me/2348000000000?text=Hello%20Little%20Nest%2C%20I%20need%20help%20locating%20my%20order."
+                  href="https://wa.me/2348000000000?text=Hello%20Crown%20%26%20Coral%20Concierge%2C%20I%20need%20help%20locating%20my%20order."
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-gray-200 text-xs font-bold text-boutique-charcoal hover:text-boutique-rose transition"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-gray-200 text-xs font-bold text-boutique-charcoal hover:text-accent transition"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Ask Concierge on WhatsApp</span>

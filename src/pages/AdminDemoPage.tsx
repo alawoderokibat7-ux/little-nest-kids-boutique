@@ -158,7 +158,7 @@ export const AdminDemoPage: React.FC = () => {
   const openWhatsAppCustomer = (order: StoreOrder) => {
     const cleanPhone = order.phone.replace(/[^0-9]/g, '');
     const message = encodeURIComponent(
-      `Hello ${order.customerName},\nThis is Little Nest Children's Atelier regarding your order #${order.id}.\n• Amount: ₦${order.total.toLocaleString()}\n• Payment: ${order.paymentStatus === 'paid' ? 'PAID & VERIFIED (' + (order.paymentGateway || 'Bank Settlement') + ')' : 'PAYMENT PENDING'}\n• Waybill: ${order.waybillNumber || 'Assigned to Courier'}\n• Packaging: ${order.giftWrapping || 'Silk Gift Box'}\n\nOur concierge is overseeing your luxury preparation. Thank you for dressing with Little Nest!`
+      `Hello ${order.customerName},\nThis is Crown & Coral Royal Children's Atelier regarding your order #${order.id}.\n• Amount: ₦${order.total.toLocaleString()}\n• Payment: ${order.paymentStatus === 'paid' ? 'PAID & VERIFIED (' + (order.paymentGateway || 'Bank Settlement') + ')' : 'PAYMENT PENDING'}\n• Waybill: ${order.waybillNumber || 'Assigned to Courier'}\n• Packaging: ${order.giftWrapping || 'Silk Gift Box'}\n\nOur royal concierge is overseeing your luxury preparation. Thank you for dressing with Crown & Coral!`
     );
     window.open(`https://wa.me/${cleanPhone}?text=${message}`, '_blank');
   };
@@ -188,7 +188,7 @@ export const AdminDemoPage: React.FC = () => {
               <span>Executive Atelier Management</span>
             </div>
             <h1 className="font-serif text-2xl font-bold text-boutique-charcoal">
-              Little Nest · Executive Portal
+              Crown & Coral · Executive Portal
             </h1>
             <p className="text-xs text-boutique-taupe mt-1.5 max-w-xs mx-auto">
               Secure access to incoming VIP client bookings, payment gateway settlements, and dispatch logistics.
@@ -262,7 +262,7 @@ export const AdminDemoPage: React.FC = () => {
             </span>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl font-bold text-boutique-charcoal">
-            Little Nest Children's Atelier · Operations Suite
+            Crown & Coral Kids · Executive Operations Suite
           </h1>
           <p className="text-xs sm:text-sm text-boutique-taupe">
             Benchmarked against Parisian couture standards (Bonpoint, Jacadi Paris) for client orders, payment reconciliations, and white-glove dispatch.
@@ -865,7 +865,7 @@ export const AdminDemoPage: React.FC = () => {
 
                     <div className="flex items-center gap-2 flex-shrink-0">
                       <a
-                        href={`https://wa.me/${t.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${t.customerName},\nThis is Little Nest Children's Atelier following up on your question: "${t.message}"\nHow may we assist you further?`)}`}
+                        href={`https://wa.me/${t.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${t.customerName},\nThis is Crown & Coral Royal Children's Atelier following up on your question: "${t.message}"\nHow may we assist you further?`)}`}
                         target="_blank"
                         rel="noreferrer"
                         className="px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 transition flex items-center gap-1.5 shadow-xs"
@@ -911,11 +911,11 @@ export const AdminDemoPage: React.FC = () => {
             <div className="border-b-2 border-boutique-charcoal pb-4 flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-boutique-rose-light text-boutique-rose font-serif font-bold flex items-center justify-center text-sm">
-                    LN
+                  <div className="w-8 h-8 rounded-xl bg-accent text-[#06281E] font-serif font-bold flex items-center justify-center text-sm shadow-xs">
+                    CC
                   </div>
                   <div>
-                    <h2 className="font-serif text-xl font-bold tracking-tight">Little Nest Children's Atelier</h2>
+                    <h2 className="font-serif text-xl font-bold tracking-tight">Crown & Coral Royal Children's Atelier</h2>
                     <span className="text-[9px] uppercase tracking-widest text-boutique-taupe">Official Dispatch Manifest & Waybill</span>
                   </div>
                 </div>
@@ -971,7 +971,7 @@ export const AdminDemoPage: React.FC = () => {
 
             {/* Total Footer */}
             <div className="border-t border-gray-200 pt-3 flex justify-between items-center text-xs">
-              <span className="text-boutique-taupe font-mono">RC: 1894201 · Little Nest Boutique Lagos</span>
+              <span className="text-boutique-taupe font-mono">RC: 1894201 · Crown & Coral Atelier Lagos</span>
               <div className="text-right">
                 <span className="text-[11px] text-boutique-taupe block">Declared Parcel Total</span>
                 <span className="text-lg font-serif font-bold text-boutique-charcoal tabular-nums">{formatPrice(waybillOrder.total)}</span>
@@ -1016,7 +1016,7 @@ export const AdminDemoPage: React.FC = () => {
             <div className="p-4 rounded-2xl bg-purple-50/50 border border-purple-100 space-y-2 text-xs">
               <div className="flex justify-between">
                 <span className="text-boutique-taupe">Beneficiary:</span>
-                <span className="font-bold text-boutique-charcoal">Little Nest Kids Boutique Ltd</span>
+                <span className="font-bold text-boutique-charcoal">Crown & Coral Kids Atelier Ltd</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-boutique-taupe">Bank & Account:</span>
@@ -1298,7 +1298,7 @@ export const AdminDemoPage: React.FC = () => {
       {/* Official Atelier Copyright & Corporate Verification Strip */}
       <div className="p-4 rounded-2xl glass-panel text-center text-xs text-boutique-taupe border border-white/80 space-y-1">
         <p className="font-semibold text-boutique-charcoal">
-          © 2026 Little Nest Children's Atelier Ltd. (RC: 1894201). All rights reserved.
+          © 2026 Crown & Coral Kids Atelier Ltd. (RC: 1894201). All rights reserved.
         </p>
         <p className="text-[11px]">
           Compliant with Nigerian Data Protection Regulation (NDPR) & Global E-Commerce Authenticity Standards.

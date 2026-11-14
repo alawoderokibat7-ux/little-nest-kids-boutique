@@ -435,34 +435,34 @@ export const DEMO_PRODUCTS: Product[] = [
 ];
 
 export const CATEGORIES_LIST = [
-  { id: 'all', label: 'All Categories' },
-  { id: 'dresses-partywear', label: 'Dresses & Partywear' },
-  { id: 'birthday', label: 'Birthday Outfits' },
-  { id: 'matching-sets', label: 'Matching Sets' },
-  { id: 'baby', label: 'Baby & Toddler (1–3 yrs)' },
-  { id: 'shoes-accessories', label: 'Shoes & Accessories' },
+  { id: 'all', label: 'All Collections' },
+  { id: 'dresses-partywear', label: 'Royal Occasion & Partywear' },
+  { id: 'birthday', label: 'Sunday Best & Milestone Galas' },
+  { id: 'matching-sets', label: 'Heirloom Linen & Sets' },
+  { id: 'baby', label: 'Royal Toddlers (1–3 yrs)' },
+  { id: 'shoes-accessories', label: 'Crown & Coral Keepsakes' },
 ];
 
 export const GENDER_FILTERS = [
-  { id: 'all', label: 'All Kids' },
-  { id: 'girls', label: "Girls' Collection" },
-  { id: 'boys', label: "Boys' Collection" },
+  { id: 'all', label: 'All Royal Children' },
+  { id: 'girls', label: "Little Princesses" },
+  { id: 'boys', label: "Little Princes" },
 ];
 
 export const AGE_RANGES = [
   { id: 'all', label: 'All Ages' },
   { id: '1-3', label: 'Toddlers (1–3 yrs)', min: 1, max: 3 },
   { id: '4-6', label: 'Little Kids (4–6 yrs)', min: 4, max: 6 },
-  { id: '7-9', label: 'Kids (7–9 yrs)', min: 7, max: 9 },
+  { id: '7-9', label: 'Growing Royals (7–9 yrs)', min: 7, max: 9 },
   { id: '10-13', label: 'Pre-Teens (10–13 yrs)', min: 10, max: 13 },
 ];
 
 export const SIZES_LIST = ['12M', '18M', '2T', '3T', '4Y', '5Y', '6Y', '7Y', '8Y', '9Y', '10Y', '11-12Y', '13Y', 'One Size'];
 
 export const STORE_CONFIG = {
-  brandName: 'Little Nest Kids Boutique',
-  tagline: 'Curated Elegance & Playful Charm for Little Dreams',
+  brandName: 'Crown & Coral Kids',
+  tagline: "The Royal Children's Atelier — Heirloom Occasionwear & Celebration Fashion",
   demoWhatsAppNumber: '2348000000000',
   currencySymbol: '₦',
-  announcement: 'Complimentary Doorstep Delivery Across Lagos on Orders Over ₦50,000'
+  announcement: 'Complimentary White-Glove Delivery Across Lagos on Orders Over ₦50,000'
 };

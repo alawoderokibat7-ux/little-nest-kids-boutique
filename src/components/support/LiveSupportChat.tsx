@@ -50,7 +50,7 @@ export const LiveSupportChat: React.FC = () => {
     {
       id: 'm-1',
       sender: 'assistant',
-      text: "Hello! Welcome to Little Nest Children's Atelier 👋\n\nHow may our concierge assist you today? You can ask about sizes for ages 1–13, express Lagos delivery, or connect with our human stylist.",
+      text: "Hello! Welcome to Crown & Coral Royal Children's Atelier 👋\n\nHow may our royal concierge assist you today? You can ask about sizes for ages 1–13, express Lagos delivery, or connect with our human stylist.",
       time: 'Just now',
     },
   ]);
@@ -183,17 +183,17 @@ export const LiveSupportChat: React.FC = () => {
         <div className="fixed bottom-28 lg:bottom-24 right-4 sm:right-6 w-[94vw] sm:w-[410px] h-[540px] max-h-[82vh] bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/80 z-50 flex flex-col overflow-hidden animate-fadeIn text-boutique-charcoal">
           
           {/* Widget Header */}
-          <div className="bg-gradient-to-r from-boutique-charcoal via-[#2A2421] to-boutique-charcoal text-white p-4 flex items-center justify-between flex-shrink-0">
+          <div className="bg-gradient-to-r from-[#06281E] via-[#0A3327] to-[#06281E] text-white p-4 flex items-center justify-between flex-shrink-0 border-b border-accent/30">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-full bg-boutique-rose text-white flex items-center justify-center font-serif font-bold text-sm shadow-inner">
-                LN
+              <div className="w-9 h-9 rounded-xl bg-accent text-[#06281E] flex items-center justify-center font-serif font-bold text-sm shadow-inner">
+                CC
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-serif font-bold text-sm leading-tight">Little Nest Concierge</h3>
+                  <h3 className="font-serif font-bold text-sm leading-tight text-white">Crown & Coral Concierge</h3>
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
-                <span className="text-[10px] text-white/70 block">Online · Ready to help</span>
+                <span className="text-[10px] text-accent/80 block">Royal Stylist · Online</span>
               </div>
             </div>
 

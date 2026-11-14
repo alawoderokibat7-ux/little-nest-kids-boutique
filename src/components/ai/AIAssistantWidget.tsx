@@ -30,7 +30,7 @@ export const AIAssistantWidget: React.FC = () => {
     {
       id: 'welcome-1',
       sender: 'assistant',
-      text: "Hello! 👋 I'm your Little Nest shopping concierge.\n\nLooking for something specific? Ask me about children's sizes, age-appropriate picks, or budget recommendations (e.g. *'Birthday dress for a 5yo girl under ₦25,000'*).",
+      text: "Hello! 👋 I'm your Crown & Coral royal shopping concierge.\n\nLooking for something specific? Ask me about children's sizes, age-appropriate picks, or budget recommendations (e.g. *'Birthday dress for a 5yo girl under ₦25,000'*).",
       suggestions: [
         "🎂 Birthday dress for 5yo girl",
         "🤵 Formal linen set for 6yo boy",
@@ -133,7 +133,7 @@ export const AIAssistantWidget: React.FC = () => {
                 <div>
                   <div className="flex items-center gap-1.5">
                     <h3 className="font-serif font-bold text-xs text-crystal-dark">
-                      Little Nest AI Concierge
+                      Crown & Coral AI Concierge
                     </h3>
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   </div>
@@ -246,7 +246,7 @@ export const AIAssistantWidget: React.FC = () => {
                         Direct concierge assistance. Connects to the boutique's configured demo line (+234 800 000 0000).
                       </p>
                       <a
-                        href={`https://wa.me/${STORE_CONFIG.demoWhatsAppNumber}?text=${encodeURIComponent("Hello Little Nest! I have a boutique styling enquiry from your website showcase.")}`}
+                        href={`https://wa.me/${STORE_CONFIG.demoWhatsAppNumber}?text=${encodeURIComponent("Hello Crown & Coral! I have a boutique styling enquiry from your website showcase.")}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 px-3 rounded-xl bg-[#25D366] hover:bg-[#20BE5C] text-white text-[11px] font-bold shadow-2xs transition"

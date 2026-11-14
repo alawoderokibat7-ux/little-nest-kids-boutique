@@ -1,7 +1,7 @@
-# 🕊️ Little Nest Kids Boutique — Premium Luxury E-Commerce & Order Booking Platform
+# 👑 Crown & Coral Kids — The Royal Children's Atelier & Luxury Occasionwear Platform
 
 > **Engineered by Rocky**  
-> An upscale children's clothing platform (Ages 1–13) featuring **instant Order Booking, SMS/receipt notifications, and live 4-step delivery tracking**.
+> An upscale children's clothing platform (Ages 1–13) featuring **instant Order Booking, SMS/receipt notifications, live 4-step delivery tracking, and Royal Emerald & Champagne Gold 3D Atmosphere**.
 > 
 > 🌐 **Live Website:** [https://little-nest-kids-boutique.pages.dev](https://little-nest-kids-boutique.pages.dev)  
 > 📦 **GitHub Repository:** [https://github.com/alawoderokibat7-ux/little-nest-kids-boutique](https://github.com/alawoderokibat7-ux/little-nest-kids-boutique)

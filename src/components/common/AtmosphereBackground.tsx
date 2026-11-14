@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import FOG from 'vanta/dist/vanta.fog.min.js';
 // @ts-expect-error - vanta has no official types
 import WAVES from 'vanta/dist/vanta.waves.min.js';
-import { Sparkles, Waves, Cloud, Palette, Check } from 'lucide-react';
+import { Sparkles, Waves, Cloud, Palette, Check, Crown } from 'lucide-react';
 
 export type AtmosphereMode = 'fog' | 'waves' | 'pearls' | 'aurora';
 
@@ -22,13 +22,13 @@ export const useAtmosphere = () => React.useContext(AtmosphereContext);
 
 export const AtmosphereProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mode, setModeState] = useState<AtmosphereMode>(() => {
-    const saved = localStorage.getItem('little_nest_atmosphere');
+    const saved = localStorage.getItem('crown_coral_atmosphere');
     return (saved as AtmosphereMode) || 'fog';
   });
 
   const setMode = (newMode: AtmosphereMode) => {
     setModeState(newMode);
-    localStorage.setItem('little_nest_atmosphere', newMode);
+    localStorage.setItem('crown_coral_atmosphere', newMode);
   };
 
   return (
@@ -45,9 +45,8 @@ export const AtmosphereBackground: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const effectRef = useRef<any>(null);
 
-  // Initialize Vanta 3D background effects (Fog / Waves)
+  // Initialize Vanta 3D background effects (Royal Emerald & Champagne Gold)
   useEffect(() => {
-    // Clean up previous vanta instance
     if (effectRef.current) {
       try {
         effectRef.current.destroy();
@@ -70,13 +69,13 @@ export const AtmosphereBackground: React.FC = () => {
           gyroControls: false,
           minHeight: 200.0,
           minWidth: 200.0,
-          highlightColor: 0xffd5dc, // Soft boutique blush pink
-          midtoneColor: 0xeae0f5,   // Soft dreamy lavender
-          lowlightColor: 0xfcf3eb,   // Warm champagne cream
-          baseColor: 0xfbf8f3,       // Soft ivory backdrop
-          blurFactor: 0.68,
-          zoom: 1.1,
-          speed: 1.1,
+          highlightColor: 0xd4af37, // Spun Champagne Gold
+          midtoneColor: 0x0f4736,   // Royal Parisian Emerald
+          lowlightColor: 0x06281e,  // Deep Regal Velvet Forest
+          baseColor: 0x08221a,      // Midnight Royal Emerald
+          blurFactor: 0.72,
+          zoom: 1.15,
+          speed: 1.05,
         });
       } catch (err) {
         console.warn('Failed to initialize Vanta FOG:', err);
@@ -92,11 +91,11 @@ export const AtmosphereBackground: React.FC = () => {
           gyroControls: false,
           minHeight: 200.0,
           minWidth: 200.0,
-          color: 0xf3ded9,          // Champagne rose silk sheen
-          shininess: 38.0,
-          waveHeight: 14.0,
-          waveSpeed: 0.65,
-          zoom: 0.88,
+          color: 0x0a3327,          // Deep Royal Emerald silk sheen
+          shininess: 45.0,
+          waveHeight: 15.0,
+          waveSpeed: 0.7,
+          zoom: 0.92,
         });
       } catch (err) {
         console.warn('Failed to initialize Vanta WAVES:', err);
@@ -115,7 +114,7 @@ export const AtmosphereBackground: React.FC = () => {
     };
   }, [mode]);
 
-  // Interactive Pearl Bokeh Particle Simulation (for 'pearls' mode)
+  // Interactive Royal Coral & Gold Beads Particle Simulation (for 'pearls' mode)
   useEffect(() => {
     if (mode !== 'pearls') return;
 
@@ -135,14 +134,16 @@ export const AtmosphereBackground: React.FC = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Pearl particles
-    const particleCount = window.innerWidth < 768 ? 25 : 45;
+    // Royal Coral & Champagne Gold beads
+    const particleCount = window.innerWidth < 768 ? 26 : 48;
     const particles = Array.from({ length: particleCount }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 2.8 + 1.2,
-      color: Math.random() > 0.5 ? 'rgba(235, 178, 178, ' : 'rgba(212, 192, 160, ',
-      alpha: Math.random() * 0.4 + 0.15,
+      radius: Math.random() * 3.2 + 1.2,
+      color: Math.random() > 0.45 
+        ? 'rgba(212, 175, 55, ' // Champagne Gold
+        : (Math.random() > 0.5 ? 'rgba(226, 109, 92, ' : 'rgba(82, 183, 136, '), // Royal Coral or Jade
+      alpha: Math.random() * 0.45 + 0.18,
       speedY: Math.random() * 0.4 + 0.15,
       speedX: (Math.random() - 0.5) * 0.25,
       swing: Math.random() * Math.PI * 2,
@@ -152,15 +153,15 @@ export const AtmosphereBackground: React.FC = () => {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Subtle base warmth
+      // Deep royal emerald base gradient
       const bgGrad = ctx.createLinearGradient(0, 0, width, height);
-      bgGrad.addColorStop(0, '#fdfbf7');
-      bgGrad.addColorStop(0.5, '#faedf0');
-      bgGrad.addColorStop(1, '#f5eef8');
+      bgGrad.addColorStop(0, '#06281e');
+      bgGrad.addColorStop(0.5, '#0a3327');
+      bgGrad.addColorStop(1, '#08221a');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, width, height);
 
-      // Draw floating pearls
+      // Draw floating coral & gold beads
       particles.forEach((p) => {
         p.swing += p.swingSpeed;
         p.y -= p.speedY;
@@ -176,8 +177,8 @@ export const AtmosphereBackground: React.FC = () => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = `${p.color}${p.alpha})`;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(240, 195, 195, 0.5)';
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = 'rgba(212, 175, 55, 0.4)';
         ctx.fill();
         ctx.shadowBlur = 0;
       });
@@ -195,34 +196,34 @@ export const AtmosphereBackground: React.FC = () => {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-20 transition-opacity duration-700">
-      {/* Vanta 3D Container (for Fog and Waves) */}
+      {/* Vanta 3D Container (for Royal Fog and Waves) */}
       {(mode === 'fog' || mode === 'waves') && (
         <div
           ref={vantaRef}
-          className="absolute inset-0 w-full h-full opacity-90 transition-opacity duration-700"
+          className="absolute inset-0 w-full h-full opacity-95 transition-opacity duration-700"
         />
       )}
 
-      {/* Canvas Pearl Bokeh Container */}
+      {/* Canvas Royal Coral & Gold Bokeh Container */}
       {mode === 'pearls' && (
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full opacity-85 transition-opacity duration-700"
+          className="absolute inset-0 w-full h-full opacity-95 transition-opacity duration-700"
         />
       )}
 
-      {/* Aurora Ambient Orbs Container */}
+      {/* Aurora Ambient Orbs Container: Royal Emerald & Gold */}
       {mode === 'aurora' && (
-        <div className="absolute inset-0 bg-[#fdfaf7] transition-all duration-700">
-          <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-pink-200/60 rounded-full blur-[140px] animate-pulse [animation-duration:8s]" />
-          <div className="absolute top-1/4 -right-40 w-[550px] h-[550px] bg-purple-200/50 rounded-full blur-[140px] animate-pulse [animation-duration:10s]" />
-          <div className="absolute top-2/3 -left-20 w-[500px] h-[500px] bg-amber-100/65 rounded-full blur-[130px] animate-pulse [animation-duration:9s]" />
-          <div className="absolute -bottom-32 right-1/4 w-[600px] h-[600px] bg-blue-100/60 rounded-full blur-[140px] animate-pulse [animation-duration:11s]" />
+        <div className="absolute inset-0 bg-[#06281e] transition-all duration-700">
+          <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#0f4736]/70 rounded-full blur-[140px] animate-pulse [animation-duration:8s]" />
+          <div className="absolute top-1/4 -right-40 w-[550px] h-[550px] bg-[#d4af37]/20 rounded-full blur-[140px] animate-pulse [animation-duration:10s]" />
+          <div className="absolute top-2/3 -left-20 w-[500px] h-[500px] bg-[#e26d5c]/20 rounded-full blur-[130px] animate-pulse [animation-duration:9s]" />
+          <div className="absolute -bottom-32 right-1/4 w-[600px] h-[600px] bg-[#0a3327]/80 rounded-full blur-[140px] animate-pulse [animation-duration:11s]" />
         </div>
       )}
 
-      {/* Subtle overlay texture to give luxury tactile grain */}
-      <div className="absolute inset-0 bg-white/20 backdrop-filter backdrop-contrast-[1.02] pointer-events-none" />
+      {/* Subtle overlay texture to give luxury tactile glass sheen */}
+      <div className="absolute inset-0 bg-black/10 backdrop-filter backdrop-contrast-[1.03] pointer-events-none" />
     </div>
   );
 };
@@ -235,86 +236,103 @@ export const AtmosphereSwitcher: React.FC = () => {
   const options: { id: AtmosphereMode; label: string; desc: string; icon: React.ReactNode }[] = [
     {
       id: 'fog',
-      label: 'Pastel Fog',
-      desc: 'Dreamy 3D rose mist',
-      icon: <Cloud className="w-4 h-4 text-pink-400" />,
+      label: 'Royal Emerald Silk',
+      desc: '3D emerald & champagne mist',
+      icon: <Cloud className="w-4 h-4 text-emerald-400" />,
     },
     {
       id: 'waves',
-      label: 'Silk Waves',
-      desc: 'Liquid satin drapery',
-      icon: <Waves className="w-4 h-4 text-amber-500" />,
+      label: 'Imperial Silk Waves',
+      desc: '3D undulating royal waves',
+      icon: <Waves className="w-4 h-4 text-amber-400" />,
     },
     {
       id: 'pearls',
-      label: 'Pearl Bokeh',
-      desc: 'Floating fairy dust',
-      icon: <Sparkles className="w-4 h-4 text-purple-400" />,
+      label: 'Coral & Gold Beads',
+      desc: 'Floating royal coral particles',
+      icon: <Sparkles className="w-4 h-4 text-coral" />,
     },
     {
       id: 'aurora',
-      label: 'Aurora Glow',
-      desc: 'Soft ambient orbs',
-      icon: <Palette className="w-4 h-4 text-sky-400" />,
+      label: 'Palace Royal Orbs',
+      desc: 'Luminous ambient atmosphere',
+      icon: <Palette className="w-4 h-4 text-amber-300" />,
     },
   ];
 
-  // Close dropdown on click outside
+  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
+  const currentOption = options.find((o) => o.id === mode) || options[0];
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative inline-block text-left">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[11px] font-semibold tracking-wide bg-white/70 hover:bg-white text-boutique-charcoal border border-boutique-rose/25 shadow-sm hover:shadow transition-all backdrop-blur-md"
-        title="Change Background Atmosphere"
+        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/70 hover:bg-white/90 border border-boutique-border/70 text-boutique-charcoal text-xs font-medium transition shadow-xs backdrop-blur-md"
+        title="Change 3D Royal Atmosphere"
+        aria-label="Change 3D Royal Atmosphere"
       >
-        <Sparkles className="w-3.5 h-3.5 text-boutique-rose animate-spin-slow" />
-        <span className="hidden sm:inline">Atmosphere:</span>
-        <span className="text-boutique-rose capitalize font-bold">
-          {mode === 'fog' ? 'Pastel Fog' : mode === 'waves' ? 'Silk Waves' : mode === 'pearls' ? 'Pearl Bokeh' : 'Aurora'}
+        <span className="flex items-center justify-center">{currentOption.icon}</span>
+        <span className="hidden sm:inline text-[11px] font-semibold text-boutique-charcoal">
+          {currentOption.label}
         </span>
+        <Crown className="w-3 h-3 text-accent ml-0.5" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 p-1.5 bg-white/95 backdrop-blur-xl border border-boutique-rose/20 rounded-2xl shadow-2xl z-50 animate-fadeIn text-left">
-          <div className="px-3 py-1.5 border-b border-gray-100 text-[10px] font-bold uppercase tracking-wider text-boutique-taupe">
-            Select Mood Atmosphere
+        <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white/95 backdrop-blur-2xl border border-boutique-border shadow-2xl p-2 z-50 animate-fadeInScale">
+          <div className="px-3 py-2 border-b border-boutique-border/60 mb-1">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent block flex items-center gap-1.5">
+              <Crown className="w-3.5 h-3.5 text-accent" />
+              <span>Royal 3D Atmosphere</span>
+            </span>
+            <span className="text-xs text-boutique-taupe">Select interactive backdrop mood</span>
           </div>
-          <div className="space-y-1 mt-1">
-            {options.map((opt) => (
-              <button
-                key={opt.id}
-                onClick={() => {
-                  setMode(opt.id);
-                  setIsOpen(false);
-                }}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all ${
-                  mode === opt.id
-                    ? 'bg-boutique-rose-light text-boutique-rose font-bold'
-                    : 'text-boutique-charcoal hover:bg-gray-50'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="p-1.5 rounded-lg bg-white shadow-xs border border-gray-100">
-                    {opt.icon}
-                  </span>
-                  <div>
-                    <div className="font-semibold text-[11px] leading-tight">{opt.label}</div>
-                    <div className="text-[9px] text-boutique-taupe font-normal">{opt.desc}</div>
+
+          <div className="space-y-1">
+            {options.map((opt) => {
+              const isSelected = mode === opt.id;
+              return (
+                <button
+                  key={opt.id}
+                  onClick={() => {
+                    setMode(opt.id);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition ${
+                    isSelected
+                      ? 'bg-accent/15 border border-accent/30 text-boutique-charcoal font-semibold'
+                      : 'hover:bg-boutique-sand/40 text-boutique-taupe hover:text-boutique-charcoal'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-white/80 border border-boutique-border/60 flex items-center justify-center shadow-xs">
+                      {opt.icon}
+                    </div>
+                    <div>
+                      <span className="text-xs block font-medium leading-tight text-boutique-charcoal">
+                        {opt.label}
+                      </span>
+                      <span className="text-[10px] text-boutique-taupe block">{opt.desc}</span>
+                    </div>
                   </div>
-                </div>
-                {mode === opt.id && <Check className="w-3.5 h-3.5 text-boutique-rose" />}
-              </button>
-            ))}
+                  {isSelected && <Check className="w-4 h-4 text-accent" />}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
