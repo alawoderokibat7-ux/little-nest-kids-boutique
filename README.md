@@ -4,7 +4,7 @@
 > An upscale children's clothing platform (Ages 1–13) featuring **instant Order Booking, SMS/receipt notifications, live 4-step delivery tracking, and Royal Emerald & Champagne Gold 3D Atmosphere**.
 > 
 > 🌐 **Live Website:** [https://little-nest-kids-boutique.pages.dev](https://little-nest-kids-boutique.pages.dev)  
-> 📦 **GitHub Repository:** [https://github.com/alawoderokibat7-ux/little-nest-kids-boutique](https://github.com/alawoderokibat7-ux/little-nest-kids-boutique)
+> 📦 **GitHub Repository:** [https://github.com/alawoderokibat7-ux/crown-and-coral-kids](https://github.com/alawoderokibat7-ux/crown-and-coral-kids)
 
 ---
 

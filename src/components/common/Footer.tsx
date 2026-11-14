@@ -11,12 +11,18 @@ export const Footer: React.FC = () => {
           
           <div className="md:col-span-1 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#0A3327] to-[#06281E] border border-accent/40 flex items-center justify-center text-accent shadow-xs">
-                <Crown className="w-4 h-4 text-accent" />
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0A3327] to-[#06281E] border border-accent/40 flex items-center justify-center text-accent shadow-xs relative">
+                <Crown className="w-5 h-5 text-accent" />
+                <span className="w-2 h-2 rounded-full bg-coral absolute -top-0.5 -right-0.5 border border-white" title="Royal Coral Gem" />
               </div>
-              <span className="font-serif text-xl font-bold text-boutique-charcoal block">
-                Crown & Coral
-              </span>
+              <div>
+                <span className="font-serif text-xl font-bold text-boutique-charcoal block leading-none">
+                  Crown & Coral Kids
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.22em] text-accent font-bold block mt-0.5">
+                  The Royal Children's Atelier
+                </span>
+              </div>
             </div>
             <p className="text-xs text-boutique-taupe leading-relaxed">
               Curated royal Nigerian occasionwear, Sunday best dresses, and tailored linen suits for children aged 1 to 13.
@@ -25,7 +31,7 @@ export const Footer: React.FC = () => {
 
           <div>
             <h5 className="text-[11px] font-bold uppercase tracking-[0.2em] text-boutique-charcoal mb-4 flex items-center gap-1.5">
-              <Crown className="w-3 h-3 text-accent" />
+              <Crown className="w-3.5 h-3.5 text-accent" />
               <span>Royal Collections</span>
             </h5>
             <ul className="space-y-2.5 text-xs">
