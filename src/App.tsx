@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider, useCart } from './context/CartContext';
+import { OrdersProvider } from './context/OrdersContext';
 import { AtmosphereProvider, AtmosphereBackground } from './components/common/AtmosphereBackground';
 import { SmoothScrollProvider } from './components/common/SmoothScrollProvider';
 import { Navbar } from './components/common/Navbar';
@@ -50,6 +51,7 @@ export const AppContent: React.FC = () => {
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/admin" element={<AdminDemoPage />} />
           <Route path="/admin-demo" element={<AdminDemoPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
@@ -78,9 +80,11 @@ export default function App() {
     <BrowserRouter>
       <SmoothScrollProvider>
         <AtmosphereProvider>
-          <CartProvider>
-            <AppContent />
-          </CartProvider>
+          <OrdersProvider>
+            <CartProvider>
+              <AppContent />
+            </CartProvider>
+          </OrdersProvider>
         </AtmosphereProvider>
       </SmoothScrollProvider>
     </BrowserRouter>

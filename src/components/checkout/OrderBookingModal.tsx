@@ -3,6 +3,7 @@ import { X, CheckCircle, Clock, AlertCircle, Info } from 'lucide-react';
 import { CartItem } from '../../types';
 import { formatPrice } from '../../utils/formatters';
 import { useCart } from '../../context/CartContext';
+import { useOrders } from '../../context/OrdersContext';
 
 interface OrderBookingModalProps {
   cartItems: CartItem[];
@@ -33,6 +34,7 @@ export const OrderBookingModal: React.FC<OrderBookingModalProps> = ({
   clearCartOnSuccess = false,
 }) => {
   const { clearCart } = useCart();
+  const { addOrder } = useOrders();
   const [customerName, setCustomerName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('Lagos - Island (Lekki, Ikoyi, VI)');
@@ -66,13 +68,27 @@ export const OrderBookingModal: React.FC<OrderBookingModalProps> = ({
     setIsSubmitting(true);
 
     setTimeout(() => {
-      const orderNumber = `LN-${Math.floor(100000 + Math.random() * 900000)}`;
       const now = new Date();
       const estDate = new Date();
       estDate.setDate(now.getDate() + (city.includes('Lagos') ? 1 : 3));
 
+      // Persist order to Store Orders Store for Admin Access
+      const savedStoreOrder = addOrder({
+        customerName,
+        phone,
+        city,
+        address,
+        items: [...cartItems],
+        subtotal,
+        deliveryFee,
+        total: grandTotal,
+        paymentMethod,
+        paymentStatus: paymentMethod === 'pod' ? 'pending' : 'paid',
+        fulfillmentStatus: 'new',
+      });
+
       const newOrder: PlacedOrder = {
-        orderId: orderNumber,
+        orderId: savedStoreOrder.id,
         customerName,
         phone,
         city,

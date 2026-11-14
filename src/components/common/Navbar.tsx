@@ -111,11 +111,12 @@ export const Navbar: React.FC = () => {
             <AtmosphereSwitcher />
 
             <Link
-              to="/admin-demo"
+              to="/admin"
               className="text-xs font-semibold text-boutique-charcoal hover:bg-boutique-sand/60 px-3 py-2 rounded-xl border border-boutique-border hidden md:flex items-center gap-1.5 transition"
+              title="Store Owner Admin Portal"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Orders Log</span>
+              <span>Admin Portal</span>
             </Link>
 
             {/* Mobile Search Trigger */}
@@ -163,11 +164,11 @@ export const Navbar: React.FC = () => {
             </div>
             <div className="pt-1">
               <Link
-                to="/admin-demo"
+                to="/admin"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-3 py-2 text-xs font-bold text-boutique-rose"
               >
-                Store Orders Log
+                Store Admin & Payment Access
               </Link>
             </div>
           </div>

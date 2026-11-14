@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs">
               <li><Link to="/shop" className="hover:text-boutique-rose transition">Full Atelier Catalogue</Link></li>
               <li><Link to="/cart" className="hover:text-boutique-rose transition">Shopping Bag</Link></li>
-              <li><Link to="/admin-demo" className="hover:text-boutique-rose transition">Live Orders Hub</Link></li>
+              <li><Link to="/admin" className="hover:text-boutique-rose transition">Store Owner Admin Portal</Link></li>
               <li><span className="text-boutique-muted">Dispatch: Mon – Sat • Lagos & Nationwide</span></li>
             </ul>
           </div>
