@@ -29,6 +29,7 @@ import {
   Filter
 } from 'lucide-react';
 import { useOrders, StoreOrder, PaymentStatus, FulfillmentStatus } from '../context/OrdersContext';
+import { useSupport } from '../context/SupportContext';
 import { formatPrice } from '../utils/formatters';
 import { DEMO_PRODUCTS } from '../data/products';
 import SpotlightCard from '../components/ui/SpotlightCard';
@@ -42,6 +43,8 @@ export const AdminDemoPage: React.FC = () => {
     addOrder 
   } = useOrders();
 
+  const { tickets, updateTicketStatus, deleteTicket, unreadCount } = useSupport();
+
   // Admin Passcode Protection (Default PIN: 1234 or Rocky)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     return localStorage.getItem('little_nest_admin_auth') === 'true';
@@ -49,8 +52,8 @@ export const AdminDemoPage: React.FC = () => {
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState(false);
 
-  // Active View Tab: 'orders' | 'financials' | 'dispatch'
-  const [activeTab, setActiveTab] = useState<'orders' | 'financials' | 'dispatch'>('orders');
+  // Active View Tab: 'orders' | 'financials' | 'dispatch' | 'support'
+  const [activeTab, setActiveTab] = useState<'orders' | 'financials' | 'dispatch' | 'support'>('orders');
 
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState('');
@@ -415,6 +418,23 @@ export const AdminDemoPage: React.FC = () => {
         >
           <Truck className="w-3.5 h-3.5" />
           <span>Dispatch & Waybills</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('support')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+            activeTab === 'support'
+              ? 'bg-boutique-charcoal text-white shadow-sm'
+              : 'bg-white/60 text-boutique-taupe hover:bg-white'
+          }`}
+        >
+          <MessageCircle className="w-3.5 h-3.5" />
+          <span>Client Support Inbox</span>
+          {unreadCount > 0 && (
+            <span className="w-5 h-5 rounded-full bg-boutique-rose text-white text-[10px] font-bold flex items-center justify-center">
+              {unreadCount}
+            </span>
+          )}
         </button>
       </div>
 
@@ -783,6 +803,101 @@ export const AdminDemoPage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* CLIENT SUPPORT INBOX TAB */}
+      {activeTab === 'support' && (
+        <div className="space-y-6">
+          <div className="glass-panel rounded-3xl p-6 border border-white/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 className="font-serif text-lg font-bold text-boutique-charcoal flex items-center gap-2">
+                <MessageCircle className="w-5 h-5 text-boutique-rose" />
+                <span>Live Client Support & Concierge Tickets</span>
+              </h3>
+              <p className="text-xs text-boutique-taupe mt-1">
+                Real-time inquiries and sizing questions submitted by shoppers on the website.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                {unreadCount} Unresolved Tickets
+              </span>
+            </div>
+          </div>
+
+          <div className="glass-panel rounded-3xl overflow-hidden border border-white/80 shadow-md">
+            {tickets.length === 0 ? (
+              <div className="py-16 text-center space-y-2">
+                <CheckCircle className="w-10 h-10 text-emerald-500 mx-auto" />
+                <h4 className="font-serif font-bold text-base text-boutique-charcoal">All Inquiries Resolved!</h4>
+                <p className="text-xs text-boutique-taupe">No pending client questions in the queue.</p>
+              </div>
+            ) : (
+              <div className="divide-y divide-gray-200/60 text-xs">
+                {tickets.map((t) => (
+                  <div key={t.id} className="p-5 flex flex-col md:flex-row md:items-start justify-between gap-4 hover:bg-white/40 transition">
+                    <div className="space-y-1.5 max-w-xl">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono font-bold text-xs text-boutique-charcoal">#{t.id}</span>
+                        <span className="font-bold text-sm text-boutique-charcoal">{t.customerName}</span>
+                        <a href={`tel:${t.phone}`} className="text-[11px] text-boutique-rose hover:underline font-semibold">
+                          {t.phone}
+                        </a>
+                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                          t.status === 'new'
+                            ? 'bg-rose-50 text-rose-700 border border-rose-200 animate-pulse'
+                            : t.status === 'in_progress'
+                            ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                            : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                        }`}>
+                          {t.status.replace('_', ' ')}
+                        </span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/70 border border-gray-100 text-boutique-charcoal text-xs leading-relaxed">
+                        "{t.message}"
+                      </div>
+                      <span className="text-[10px] text-boutique-taupe block">
+                        Received {new Date(t.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })} via Store Chat
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <a
+                        href={`https://wa.me/${t.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello ${t.customerName},\nThis is Little Nest Children's Atelier following up on your question: "${t.message}"\nHow may we assist you further?`)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 transition flex items-center gap-1.5 shadow-xs"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>Reply on WhatsApp</span>
+                      </a>
+
+                      <select
+                        value={t.status}
+                        onChange={(e) => updateTicketStatus(t.id, e.target.value as 'new' | 'in_progress' | 'resolved')}
+                        className="text-xs font-semibold bg-white border border-gray-200 rounded-xl px-2.5 py-1.5 text-boutique-charcoal focus:outline-none focus:ring-1 focus:ring-boutique-rose"
+                      >
+                        <option value="new">New</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                      </select>
+
+                      <button
+                        onClick={() => {
+                          if (confirm(`Delete ticket #${t.id}?`)) deleteTicket(t.id);
+                        }}
+                        className="p-1.5 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50 transition"
+                        title="Delete Ticket"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -2,19 +2,21 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider, useCart } from './context/CartContext';
 import { OrdersProvider } from './context/OrdersContext';
+import { SupportProvider } from './context/SupportContext';
 import { AtmosphereProvider, AtmosphereBackground } from './components/common/AtmosphereBackground';
 import { SmoothScrollProvider } from './components/common/SmoothScrollProvider';
 import ClickSpark from './components/ui/ClickSpark';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
-import { AIAssistantWidget } from './components/ai/AIAssistantWidget';
+import { LiveSupportChat } from './components/support/LiveSupportChat';
 import { MobileBottomNav } from './components/common/MobileBottomNav';
 import { MobileSearchModal } from './components/common/MobileSearchModal';
 import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CartPage } from './pages/CartPage';
+import { OrderTrackingPage } from './pages/OrderTrackingPage';
 import { AdminDemoPage } from './pages/AdminDemoPage';
 
 const GlobalToast: React.FC = () => {
@@ -53,14 +55,15 @@ export const AppContent: React.FC = () => {
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/track" element={<OrderTrackingPage />} />
             <Route path="/admin" element={<AdminDemoPage />} />
             <Route path="/admin-demo" element={<AdminDemoPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
 
-        {/* Concierge Widget */}
-        <AIAssistantWidget />
+        {/* Live Boutique Support & Concierge Chat Box */}
+        <LiveSupportChat />
 
         {/* Cart Drawer */}
         <CartDrawer />
@@ -84,9 +87,11 @@ export default function App() {
       <SmoothScrollProvider>
         <AtmosphereProvider>
           <OrdersProvider>
-            <CartProvider>
-              <AppContent />
-            </CartProvider>
+            <SupportProvider>
+              <CartProvider>
+                <AppContent />
+              </CartProvider>
+            </SupportProvider>
           </OrdersProvider>
         </AtmosphereProvider>
       </SmoothScrollProvider>

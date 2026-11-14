@@ -26,6 +26,7 @@ export const Navbar: React.FC = () => {
     { label: 'Occasionwear', path: '/shop?category=dresses-partywear' },
     { label: 'Matching Sets', path: '/shop?category=matching-sets' },
     { label: 'Baby & Toddler', path: '/shop?category=baby' },
+    { label: 'Track Order', path: '/track' },
   ];
 
   return (
