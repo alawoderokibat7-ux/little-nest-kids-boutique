@@ -58,8 +58,8 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-boutique-muted">
-          <p>© {new Date().getFullYear()} Little Nest Kids Boutique. All rights reserved.</p>
-          <p className="font-medium text-boutique-charcoal">Handcrafted Occasionwear • Lagos, Nigeria</p>
+          <p>© {new Date().getFullYear()} Little Nest Children's Atelier Ltd. (RC: 1894201). All rights reserved.</p>
+          <p className="font-medium text-boutique-charcoal">Handcrafted Luxury Occasionwear • Lagos, Nigeria</p>
         </div>
 
       </div>

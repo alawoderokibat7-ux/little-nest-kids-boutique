@@ -21,6 +21,12 @@ export interface StoreOrder {
   fulfillmentStatus: FulfillmentStatus;
   createdAt: string;
   notes?: string;
+  paymentReference?: string;
+  paymentGateway?: string;
+  waybillNumber?: string;
+  courierPartner?: string;
+  clientTier?: 'Crown VIP' | 'Atelier Member' | 'First-Time Client';
+  giftWrapping?: string;
 }
 
 interface OrdersContextType {
@@ -34,7 +40,7 @@ interface OrdersContextType {
 
 const OrdersContext = createContext<OrdersContextType | undefined>(undefined);
 
-const ORDERS_STORAGE_KEY = 'little_nest_orders_v2';
+const ORDERS_STORAGE_KEY = 'little_nest_orders_v3';
 
 const INITIAL_ORDERS: StoreOrder[] = [
   {
@@ -58,6 +64,12 @@ const INITIAL_ORDERS: StoreOrder[] = [
     fulfillmentStatus: 'gift_boxing',
     createdAt: new Date(Date.now() - 25 * 60 * 1000).toISOString(),
     notes: 'Please pack in luxury ribbon box for a 5th birthday gift.',
+    paymentReference: 'GTB-TRF-0982341-LN',
+    paymentGateway: 'Direct Bank Transfer (GTBank Atelier)',
+    waybillNumber: 'WAY-LN-LAG-8821',
+    courierPartner: 'Fez Priority Island Courier',
+    clientTier: 'Crown VIP',
+    giftWrapping: 'Signature Blush Silk Box & Gold Foil Ribbon',
   },
   {
     id: 'LN-942102',
@@ -80,6 +92,12 @@ const INITIAL_ORDERS: StoreOrder[] = [
     fulfillmentStatus: 'dispatched',
     createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
     notes: 'Deliver before Friday wedding.',
+    paymentReference: 'PSTK-AUTH-874102-3DS',
+    paymentGateway: 'Paystack 3D-Secure (Mastercard)',
+    waybillNumber: 'WAY-LN-ABJ-1904',
+    courierPartner: 'GIG Logistics Air Express',
+    clientTier: 'Crown VIP',
+    giftWrapping: 'Heritage Champagne Keepsake Box',
   },
   {
     id: 'LN-942103',
@@ -101,6 +119,12 @@ const INITIAL_ORDERS: StoreOrder[] = [
     paymentStatus: 'pending',
     fulfillmentStatus: 'new',
     createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(),
+    paymentReference: 'POS-AUTH-PENDING-DELIVERY',
+    paymentGateway: 'Moniepoint POS on Arrival',
+    waybillNumber: 'WAY-LN-MAIN-3012',
+    courierPartner: 'In-House Dispatch Rider',
+    clientTier: 'Atelier Member',
+    giftWrapping: 'Standard French Linen Gift Wrap',
   },
 ];
 
@@ -129,10 +153,35 @@ export const OrdersProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [orders]);
 
   const addOrder = (orderData: Omit<StoreOrder, 'id' | 'createdAt'>): StoreOrder => {
+    const randomCode = Math.floor(100000 + Math.random() * 900000);
     const newOrder: StoreOrder = {
       ...orderData,
-      id: `LN-${Math.floor(100000 + Math.random() * 900000)}`,
+      id: `LN-${randomCode}`,
       createdAt: new Date().toISOString(),
+      paymentReference: orderData.paymentReference || (
+        orderData.paymentMethod === 'card'
+          ? `PSTK-AUTH-${randomCode}-3DS`
+          : orderData.paymentMethod === 'transfer'
+          ? `GTB-TRF-${randomCode}-LN`
+          : `POS-COD-${randomCode}`
+      ),
+      paymentGateway: orderData.paymentGateway || (
+        orderData.paymentMethod === 'card'
+          ? 'Paystack 3D-Secure'
+          : orderData.paymentMethod === 'transfer'
+          ? 'GTBank Direct Transfer'
+          : 'POS Terminal on Delivery'
+      ),
+      waybillNumber: orderData.waybillNumber || `WAY-LN-${randomCode}`,
+      courierPartner: orderData.courierPartner || (
+        orderData.city.includes('Island')
+          ? 'Fez Priority Island Rider'
+          : orderData.city.includes('Mainland')
+          ? 'In-House Dispatch Team'
+          : 'GIG Logistics Priority Air'
+      ),
+      clientTier: orderData.clientTier || 'Atelier Member',
+      giftWrapping: orderData.giftWrapping || 'Signature Boutique Gift Packaging',
     };
 
     setOrders((prev) => [newOrder, ...prev]);

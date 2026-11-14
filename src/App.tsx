@@ -4,6 +4,7 @@ import { CartProvider, useCart } from './context/CartContext';
 import { OrdersProvider } from './context/OrdersContext';
 import { AtmosphereProvider, AtmosphereBackground } from './components/common/AtmosphereBackground';
 import { SmoothScrollProvider } from './components/common/SmoothScrollProvider';
+import ClickSpark from './components/ui/ClickSpark';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
@@ -34,44 +35,46 @@ const GlobalToast: React.FC = () => {
 
 export const AppContent: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-transparent text-boutique-charcoal font-sans selection:bg-accent/20 selection:text-accent relative">
-      {/* Dynamic 3D / Canvas Animated Atmosphere Background */}
-      <AtmosphereBackground />
+    <ClickSpark sparkColor={['#D46A7E', '#EBB2B2', '#E2D4C0', '#F8E8E8']} sparkSize={10} sparkRadius={18} sparkCount={7}>
+      <div className="min-h-screen flex flex-col bg-transparent text-boutique-charcoal font-sans selection:bg-accent/20 selection:text-accent relative">
+        {/* Dynamic 3D / Canvas Animated Atmosphere Background */}
+        <AtmosphereBackground />
 
-      {/* Navigation */}
-      <Navbar />
+        {/* Navigation */}
+        <Navbar />
 
-      {/* Global Toast */}
-      <GlobalToast />
+        {/* Global Toast */}
+        <GlobalToast />
 
-      {/* Pages */}
-      <main className="flex-grow pb-16 lg:pb-0">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/product/:id" element={<ProductDetailPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/admin" element={<AdminDemoPage />} />
-          <Route path="/admin-demo" element={<AdminDemoPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
+        {/* Pages */}
+        <main className="flex-grow pb-16 lg:pb-0">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/admin" element={<AdminDemoPage />} />
+            <Route path="/admin-demo" element={<AdminDemoPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
 
-      {/* Concierge Widget */}
-      <AIAssistantWidget />
+        {/* Concierge Widget */}
+        <AIAssistantWidget />
 
-      {/* Cart Drawer */}
-      <CartDrawer />
+        {/* Cart Drawer */}
+        <CartDrawer />
 
-      {/* Mobile Search Modal */}
-      <MobileSearchModal />
+        {/* Mobile Search Modal */}
+        <MobileSearchModal />
 
-      {/* Mobile Sticky Bottom Navigation */}
-      <MobileBottomNav />
+        {/* Mobile Sticky Bottom Navigation */}
+        <MobileBottomNav />
 
-      {/* Footer */}
-      <Footer />
-    </div>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </ClickSpark>
   );
 };
 
